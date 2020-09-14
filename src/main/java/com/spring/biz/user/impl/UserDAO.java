@@ -14,7 +14,7 @@ public class UserDAO {
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
 	
 	
-	public String connectionTest(String e_mail, String password) {
+	public String getUser(String e_mail, String password) {
 		
 	
 		try {
