@@ -23,7 +23,7 @@
                 window.TestApp.setAddress(data.address);
             }       
         }
-    }).open();
+    }).embed();
 </script>
 </body>
 </html>
