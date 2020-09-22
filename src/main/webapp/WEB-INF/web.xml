@@ -3,6 +3,16 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee https://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	
+	<!-- spring (root) 컨테이너 -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:applicationContext.xml</param-value>
+	</context-param>
+	<listener>
+		<listener-class>
+			org.springframework.web.context.ContextLoaderListener
+		</listener-class>
+	</listener>
 	<!-- filter 설정 -->
 	<filter>
 		<filter-name>characterEncoding</filter-name>
@@ -17,7 +27,7 @@
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 	
-	<!-- DispatcherServlet -->
+	<!-- DispatcherServlet --><!-- spring 컨테이너 -->
 	<servlet>
 		<servlet-name>action</servlet-name>
 		<servlet-class>org.springframework.web.servlet.DispatcherServlet

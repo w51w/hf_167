@@ -7,10 +7,13 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.spring.biz.common.JDBCUtil;
-import com.spring.biz.user.UserDTO;
+import org.springframework.stereotype.Repository;
 
-public class UserDAO {
+import com.spring.biz.common.JDBCUtil;
+import com.spring.biz.user.UserService;
+
+@Repository("userDAO")
+public class UserDAO implements UserService {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
@@ -18,7 +21,8 @@ public class UserDAO {
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
 	
 	
-	public Map<String, String> getUser_Map(String e_mail, String password) {
+	@Override
+	public Map<String, String> geUser_client(String e_mail, String password) {
 		Map<String, String> map_user = null;
 		try {
 			conn = JDBCUtil.getConnection();
@@ -48,35 +52,5 @@ public class UserDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return map_user;
-	}
-	
-	public UserDTO getUser(String e_mail, String password) {
-		UserDTO user = null;
-		try {
-			conn = JDBCUtil.getConnection();
-			pstmt = conn.prepareStatement(USER_GET);
-			pstmt.setString(1, e_mail);
-			pstmt.setString(2, password);
-			rs = pstmt.executeQuery();
-			if(rs.next()) {
-				user = new UserDTO();	
-				user.setE_mail(rs.getString("e_mail"));
-				user.setPassword(rs.getString("password"));
-				user.setName(rs.getString("name"));
-				user.setAddress(rs.getString("address"));
-				user.setAddress_detail(rs.getString("address_detail"));
-				user.setPhone(rs.getString("phone"));
-				user.setSex(rs.getString("sex"));
-				user.setAge(rs.getInt("age"));
-				user.setRegdate(rs.getDate("regdate"));
-			}
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		finally {
-			JDBCUtil.close(rs, pstmt, conn);
-		}
-		return user;
 	}
 }

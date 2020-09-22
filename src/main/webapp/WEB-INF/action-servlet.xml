@@ -6,6 +6,9 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-
+	
 	<context:component-scan base-package="com.spring.view"></context:component-scan>
+	<!-- 아래 태그를 안쓰고 싶다면 컨트롤러, 클래스 위에@enableWebMvc있어야 됨  
+	SpringMvc를 구성할 때 필요한 Bean 설정들을 자동으로 해주는 어노테이션  , 책에선 예외처리에서 소개된다 p429-->
+	<mvc:annotation-driven></mvc:annotation-driven>
 </beans>
