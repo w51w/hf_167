@@ -4,6 +4,8 @@ import java.util.Map;
 
 public interface UserService {
 
-	Map<String, String> geUser_client(String e_mail, String password);
+	Map<String, String> getUser_client(String e_mail, String password);
+	
+	public String insertUsert_clinet(UserDTO vo);
 
 }

@@ -35,8 +35,32 @@ public class UserController_Client {
 		vo.setE_mail(e_mail);
 		vo.setPassword(password);
 		
-		result = userService.geUser_client(e_mail, password);
+		result = userService.getUser_client(e_mail, password);
 				
+		return result;
+	}
+	
+	@RequestMapping(value = "/user_register.do")
+	@ResponseBody
+	public String register(HttpServletRequest request) {
+		
+		String e_mail = request.getParameter("e_mail");
+		String password = request.getParameter("password");
+		String name = request.getParameter("name");
+		String phone = request.getParameter("phone");
+		String sex = request.getParameter("sex");
+		String age = request.getParameter("age");
+		
+		UserDTO vo = new UserDTO();
+		vo.setE_mail(e_mail);
+		vo.setPassword(password);
+		vo.setName(name);
+		vo.setPhone(phone);
+		vo.setSex(sex);
+		vo.setAge(Integer.parseInt(age));
+		
+		String result = userService.insertUsert_clinet(vo);
+		
 		return result;
 	}
 }

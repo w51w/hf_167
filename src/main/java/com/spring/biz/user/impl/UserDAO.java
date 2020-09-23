@@ -10,6 +10,7 @@ import java.util.Map;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.common.JDBCUtil;
+import com.spring.biz.user.UserDTO;
 import com.spring.biz.user.UserService;
 
 @Repository("userDAO")
@@ -19,10 +20,9 @@ public class UserDAO implements UserService {
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
-	
-	
+	private final String USER_INSERT = "insert into user (e_mail, password, name, phone, sex, age) values(?,?,?,?,?,?)";
 	@Override
-	public Map<String, String> geUser_client(String e_mail, String password) {
+	public Map<String, String> getUser_client(String e_mail, String password) {
 		Map<String, String> map_user = null;
 		try {
 			conn = JDBCUtil.getConnection();
@@ -52,5 +52,33 @@ public class UserDAO implements UserService {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return map_user;
+	}
+	
+	public String insertUsert_clinet(UserDTO vo) {
+		String result = null;
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(USER_INSERT);
+			pstmt.setString(1, vo.getE_mail());
+			pstmt.setString(2, vo.getPassword());
+			pstmt.setString(3, vo.getName());
+			pstmt.setString(4, vo.getPhone());
+			pstmt.setString(5, vo.getSex());
+			pstmt.setInt(6, vo.getAge());
+			if(pstmt.executeUpdate() == 1) { //영향을 받는 행 수
+				result = "true";
+			}
+			else {
+				result = "false";
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			JDBCUtil.close(pstmt, conn);
+		}
+		return result;
+		
 	}
 }
