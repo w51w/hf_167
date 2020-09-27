@@ -1,5 +1,14 @@
+<%@page import="java.util.*" %>
+<%@page import="com.spring.biz.admin.impl.AdminDAO" %>
+<%@page import="com.spring.biz.admin.AdminVO" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    
+<%
+	List<AdminVO> adminList = (List)request.getAttribute("adminList");
+%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
     <title>관리자 페이지</title>
@@ -56,33 +65,24 @@
                     <table class="table table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr >
-                            <th>Name</th>
-                            <th>Position</th>
-                            <th>Office</th>
-                            <th>Age</th>
-                            <th>Start date</th>
-                            <th>Salary</th>
+                            <th>가게 소개</th>
+                            <th>가게 위치</th>
+                            <th>전화번호</th>
+                            <th>배달요금</th>
+                            <th>최소주문금액</th>
                         </tr>
                         </thead>
-
+						<% for(AdminVO admin : adminList) { %>
+						<tr>
+							<td><%=admin.getInfo() %></td>
+							<td><%= admin.getLocation()%></td>
+							<td><%= admin.getTel()%></td>
+							<td><%= admin.getDelivery_price()%></td>
+							<td><%= admin.getLeast_price()%></td>
+						</tr>
+						<%} %>
                         </tfoot>
                         <tbody>
-                        <tr>
-                            <td>Tiger Nixon</td>
-                            <td>System Architect</td>
-                            <td>Edinburgh</td>
-                            <td>61</td>
-                            <td>2011/04/25</td>
-                            <td>$320,800</td>
-                        </tr>
-                        <tr>
-                            <td>Garrett Winters</td>
-                            <td>Accountant</td>
-                            <td>Tokyo</td>
-                            <td>63</td>
-                            <td>2011/07/25</td>
-                            <td>$170,750</td>
-                        </tr>
 
                         </tbody>
                     </table>
