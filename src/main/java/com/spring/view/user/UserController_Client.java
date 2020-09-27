@@ -1,4 +1,4 @@
-package com.spring.view;
+package com.spring.view.user;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,11 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 import com.spring.biz.user.UserDTO;
 import com.spring.biz.user.UserService;
-import com.spring.biz.user.impl.UserDAO;
 
 @Controller
 public class UserController_Client {
