@@ -3,10 +3,9 @@
 <%@page import="com.spring.biz.admin.AdminVO" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
     
-<%
-	List<AdminVO> adminList = (List)request.getAttribute("adminList");
-%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -72,15 +71,15 @@
                             <th>최소주문금액</th>
                         </tr>
                         </thead>
-						<% for(AdminVO admin : adminList) { %>
-						<tr>
-							<td><%=admin.getInfo() %></td>
-							<td><%= admin.getLocation()%></td>
-							<td><%= admin.getTel()%></td>
-							<td><%= admin.getDelivery_price()%></td>
-							<td><%= admin.getLeast_price()%></td>
-						</tr>
-						<%} %>
+						<c:forEach items="${ adminList}" var="admin">
+							<tr>
+								<td><c:out value="${admin.info }"/></td>
+								<td><c:out value="${admin.location }"/></td>
+								<td><c:out value="${admin.tel }"/></td>
+								<td><c:out value="${admin.delivery_price }"/></td>
+								<td><c:out value="${admin.least_price }"/></td>
+							</tr>
+						</c:forEach>						
                         </tfoot>
                         <tbody>
 
