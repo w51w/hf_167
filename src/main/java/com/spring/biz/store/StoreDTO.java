@@ -6,6 +6,7 @@ public class StoreDTO {
 	private String tel;
 	private String location;
 	private int delivery_price;
+	private String store_img;
 	private int	least_price;
 	private double rate;
 	private String info;
@@ -39,6 +40,12 @@ public class StoreDTO {
 	}
 	public void setDelivery_price(int delivery_price) {
 		this.delivery_price = delivery_price;
+	}
+	public String getStore_img() {
+		return store_img;
+	}
+	public void setStore_img(String store_img) {
+		this.store_img = store_img;
 	}
 	public int getLeast_price() {
 		return least_price;

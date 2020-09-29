@@ -29,6 +29,7 @@ public class StoreDAO {
 				store.setTel(rs.getString("tel"));
 				store.setLocation(rs.getString("location"));
 				store.setDelivery_price(rs.getInt("delivery_price"));
+				store.setStore_img(rs.getString("store_img"));
 				store.setLeast_price(rs.getInt("least_price"));
 				store.setRate(rs.getDouble("rate"));
 				store.setInfo(rs.getString("info"));
