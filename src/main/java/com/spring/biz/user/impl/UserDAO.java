@@ -14,14 +14,14 @@ import com.spring.biz.user.UserDTO;
 import com.spring.biz.user.UserService;
 
 @Repository("userDAO")
-public class UserDAO implements UserService {
+public class UserDAO  {
 	private Connection conn = null;
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
 	private final String USER_INSERT = "insert into user (e_mail, password, name, phone, sex, age) values(?,?,?,?,?,?)";
-	@Override
+	
 	public Map<String, String> getUser_client(String e_mail, String password) {
 		Map<String, String> map_user = null;
 		try {
