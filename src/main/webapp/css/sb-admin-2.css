@@ -4509,7 +4509,7 @@ input[type="button"].btn-block {
 }
 
 .card-body {
-  flex: 1 2 auto;
+  flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
 }
@@ -9556,7 +9556,7 @@ button.bg-dark:focus {
 }
 
 .font-weight-bold {
-  font-weight: 900 !important;
+  font-weight: 700 !important;
 }
 
 .font-weight-bolder {
