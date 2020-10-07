@@ -16,7 +16,7 @@ public class AdminController {
 	@Autowired
 	private AdminService adminService;
 	
-	
+	// 가게 목록
 	@RequestMapping("/index.do")
 	String getAdminList(AdminVO vo, AdminDAO adminDAO, Model model) {
 		System.out.println("테스트 확인---------------------------------------------------");
@@ -24,9 +24,16 @@ public class AdminController {
 		return "index.jsp";
 	}
 	
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	// 메뉴 목록
+	@RequestMapping("/menu.do")
+	String getMenuList(AdminVO vo, AdminDAO adminDAO, Model model) {
+		System.out.println("메뉴 목록 출력");
+		model.addAttribute("menuList", adminService.getMenuList(vo));
+		return "menu.jsp";
 	}
+	
+	
+	
+
 
 }

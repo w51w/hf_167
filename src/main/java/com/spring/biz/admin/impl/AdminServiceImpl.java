@@ -14,10 +14,29 @@ public class AdminServiceImpl implements AdminService {
 	@Autowired
 	private AdminDAO adminDAO;
 	
-	
 
 	public List<AdminVO> getAdminList(AdminVO vo){
 		return adminDAO.getAdminList(vo);
 	}
 
+	public void updateAdmin(AdminVO vo) {
+		adminDAO.updateAdmin(vo);
+	}
+
+
+	public List<AdminVO> getMenuList(AdminVO vo) {
+		return adminDAO.getMenuList(vo);
+	}
+
+
+	public void insertMenu(AdminVO vo) {
+		adminDAO.insertMenu(vo);
+		
+	}
+	
+	public void deleteMenu(AdminVO vo) {
+		adminDAO.deleteMenu(vo);
+		
+	}
+	
 }

@@ -2,6 +2,7 @@ package com.spring.biz.admin;
 
 public class AdminVO {
 	
+	// STORE VO
 	private String name;
 	private int category_code;
 	private String tel;
@@ -11,6 +12,15 @@ public class AdminVO {
 	private float rate;
 	private String info;
 	private String condition;
+	
+	// MENU VO
+	private int seq;
+	private String store_name;
+	private int type;
+	private String menubar;
+	private String food;
+	private int food_price;
+	private String food_img;
 	
 	// getter and setter
 	public String getName() {
@@ -66,6 +76,51 @@ public class AdminVO {
 	}
 	public void setCondition(String condition) {
 		this.condition = condition;
+	}
+	
+	
+	
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
+	public int getType() {
+		return type;
+	}
+	public void setType(int type) {
+		this.type = type;
+	}
+	public String getMenubar() {
+		return menubar;
+	}
+	public void setMenubar(String menubar) {
+		this.menubar = menubar;
+	}
+	public String getFood() {
+		return food;
+	}
+	public void setFood(String food) {
+		this.food = food;
+	}
+	public int getFood_price() {
+		return food_price;
+	}
+	public void setFood_price(int food_price) {
+		this.food_price = food_price;
+	}
+	public String getFood_img() {
+		return food_img;
+	}
+	public void setFood_img(String food_img) {
+		this.food_img = food_img;
 	}
 	
 	
