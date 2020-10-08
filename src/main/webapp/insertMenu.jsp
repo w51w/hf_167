@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -257,7 +258,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><c:out value="${ adminUser.store_name}"></c:out></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -299,13 +300,16 @@
                 <h6 class="m-0 font-weight-bold text-primary">매장정보 등록</h6>
               </div>
               <div class="card-body">
-                <p class="mb-2">가게주소</p>
-                <input class="form-control-user" type="text" name="location" style="width: 500px"/>
-                <p class="mb-2" style="padding-top: 20px">가게소개</p>
-                <textarea class="form-control-user" name="info" style="width: 500px;" rows="8"> </textarea>
-                <p class="mb-2" style="padding-top: 20px">전화번호</p> <input class="form-control-user" name="tel" type="text" min="0" style="width: 500px" />
-                <p class="mb-2" style="padding-top: 20px">배달요금</p> <input class="form-control-user" name="delivery_price" type="number" min="0" style="width: 500px" />
-                <p class="mb-2" style="padding-top: 20px">최소주문금액</p> <input class="form-control-user" name="least_price" type="number" min="0" style="width: 500px" />
+              <form action="insertMenu.do">
+                <input type = "text" name = store_name value='<c:out value="${ adminUser.store_name}"></c:out>'>
+                <p class="mb-2">메뉴바 설정</p>
+                <input class="form-control-user" name="type" type="number" min="0" max="1" />
+                <input class="form-control-user" name="menubar" type="text" placeholder ="메뉴바 이름을 입력하세요" style="width: 400px"/>
+                <p class="mb-2" style="padding-top: 20px">메뉴명</p>
+                <input class="form-control-user" name="food" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
+                <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food_price" type="number" min="0" style="width: 500px" /><p>
+                <button id="insertMenu" class="mb-4 btn btn-primary">메뉴등록</button>
+                </form>
               </div>
             </div>
           </div>

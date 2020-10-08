@@ -4,7 +4,7 @@
 <html>
 <head>
 
-  <meta charset="utf-8">
+  <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -59,27 +59,27 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-           <!-- Nav Item - Charts -->
-      <li class="nav-item active">
+      <!-- Nav Item - Charts -->
+      <li class="nav-item">
         <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="menu.jsp">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="order.jsp">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item ">
-        <a class="nav-link" href="order.jsp">
+      <li class="nav-item active">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
 
@@ -326,7 +326,6 @@
             </div>
           </div>
 
-
         </div>
         <!-- /.container-fluid -->
 
@@ -393,5 +392,3 @@
 </body>
 
 </html>
-
-

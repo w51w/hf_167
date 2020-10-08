@@ -21,15 +21,13 @@ public class AdminDAO {
 	private final String ADMIN_LIST = "SELECT * FROM STORE";
 	private final String ADMIN_INFO_UPDATE = "UPDATE STORE SET location = ?, info = ?, tel = ?, delivery_price = ?, least_price = ? WHERE NAME = ?";
 	private final String MENU_LIST = "SELECT * FROM MENU";
-	private final String INSERT_MENU = "INSERT INTO MENU(store_name, type, menubar, food, food_price) VALUES"
-														+ "(store_name = ?, type =?, menubar=?, food=?, food_price=?)";
+	private final String INSERT_MENU = "INSERT INTO MENU(store_name, type, menubar, food, food_price) VALUES (?,?,?,?,?)";
 	private final String DELETE_MENU = "DELETE FROM MENU WHERE SEQ = ?";
 	
 	// 기능 구현
 	
 	// 가게목록 
 	public List<AdminVO> getAdminList(AdminVO vo){
-		System.out.println(vo.toString());
 		return jdbcTemplate.query(ADMIN_LIST, new AdminRowMapper());
 	}
 	
@@ -49,6 +47,7 @@ public class AdminDAO {
 	// 메뉴 추가
 	public void insertMenu(AdminVO vo) {
 		System.out.println("MENU insert 기능수행");
+		System.out.println(vo.toString());
 		jdbcTemplate.update(INSERT_MENU, vo.getStore_name(), vo.getType(), vo.getMenubar(), vo.getFood(),vo.getFood_price());
 	}
 	

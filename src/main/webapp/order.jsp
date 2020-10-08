@@ -60,26 +60,26 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item active">
-        <a class="nav-link" href="charts.html">
+      <li class="nav-item">
+        <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item ">
-        <a class="nav-link" href="tables.html">
+      <li class="nav-item active">
+        <a class="nav-link" href="order.jsp">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,26 +61,26 @@
       <hr class="sidebar-divider">
 
          <!-- Nav Item - Charts -->
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="menu.jsp">
+      <li class="nav-item active">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="order.jsp">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="order.jsp">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
 
@@ -261,7 +262,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><c:out value="${ adminUser.store_name}"></c:out></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -321,15 +322,26 @@
 
                   </tfoot>
                   <tbody>
-
-
+					<c:forEach items = "${ menuList}" var = "menu">
+						<tr>
+							<td><c:out value="${menu.seq }"/></td>
+							<td><c:out value="${menu.store_name }"/></td>
+							<td><c:out value="${menu.food}"/></td>
+							<td><c:out value="${menu.food_price }"/></td>
+							<td><c:out value="${menu.food_img }"/></td>
+							<td><c:out value="${menu.seq }"/></td>
+							<td><c:out value="${menu.seq }"/></td>
+					
+						</tr>
+					</c:forEach>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
 
-          <button>insert</button>
+          <button id="insertPage" onclick="location.href='insertMenu.jsp' " class="mb-4 btn btn-primary">메뉴등록</button>
+          <button id="deleteMenu" onclick="location.href='#' " class="mb-4 btn btn-primary">메뉴삭제</button>
 
         </div>
         <!-- /.container-fluid -->

@@ -66,7 +66,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-         <!-- Nav Item - Charts -->
+      <!-- Nav Item - Charts -->
       <li class="nav-item active">
         <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
@@ -74,19 +74,19 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="menu.jsp">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="order.jsp">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="order.jsp">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
       
@@ -268,7 +268,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><c:out value="${ adminUser.store_name}"></c:out></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
