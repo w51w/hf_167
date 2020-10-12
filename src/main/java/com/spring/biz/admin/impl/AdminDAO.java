@@ -54,6 +54,7 @@ public class AdminDAO {
 	// 메뉴 삭제
 	public void deleteMenu(AdminVO vo) {
 		System.out.println("deleteMenu 기능 수행");
+		System.out.println(vo.toString());
 		jdbcTemplate.update(DELETE_MENU, vo.getSeq());
 	}
 	

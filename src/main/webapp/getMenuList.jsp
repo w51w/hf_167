@@ -316,6 +316,7 @@
                       <th>이미지</th>
                       <th>옵션 1</th>
                       <th>옵션 2</th>
+                      <th>삭제</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -331,6 +332,7 @@
 							<td><c:out value="${menu.food_img }"/></td>
 							<td><c:out value="${menu.seq }"/></td>
 							<td><c:out value="${menu.seq }"/></td>
+							<td><button id="deleteMenu" name="deleteMenu" onclick="location.href='deleteMenu.do?seq=${menu.seq}'" class="mb-4 btn btn-primary">메뉴삭제</button></td>
 					
 						</tr>
 					</c:forEach>
@@ -341,7 +343,6 @@
           </div>
 
           <button id="insertPage" onclick="location.href='insertMenu.jsp' " class="mb-4 btn btn-primary">메뉴등록</button>
-          <button id="deleteMenu" onclick="location.href='#' " class="mb-4 btn btn-primary">메뉴삭제</button>
 
         </div>
         <!-- /.container-fluid -->
