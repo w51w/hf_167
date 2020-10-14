@@ -80,7 +80,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="order.jsp">
+        <a class="nav-link" href="order.do">
           <span>주문처리</span></a>
       </li>
 
