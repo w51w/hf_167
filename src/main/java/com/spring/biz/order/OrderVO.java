@@ -2,6 +2,7 @@ package com.spring.biz.order;
 
 public class OrderVO {
 	
+	private int seq;
 	private String address;
 	private String address_detail;
 	private String user_e_mail;
@@ -67,14 +68,23 @@ public class OrderVO {
 	public void setFood5(String food5) {
 		this.food5 = food5;
 	}
+	public int getSeq() {
+		return seq;
+	}
+	public void setSeq(int seq) {
+		this.seq = seq;
+	}
+	
+	
 	
 	// toString
 	@Override
 	public String toString() {
-		return "OrderVO [address=" + address + ", address_detail=" + address_detail + ", user_e_mail=" + user_e_mail
-				+ ", type=" + type + ", food1=" + food1 + ", food2=" + food2 + ", food3=" + food3 + ", food4=" + food4
-				+ ", food5=" + food5 + "]";
+		return "OrderVO [seq=" + seq + ", address=" + address + ", address_detail=" + address_detail + ", user_e_mail="
+				+ user_e_mail + ", type=" + type + ", food1=" + food1 + ", food2=" + food2 + ", food3=" + food3
+				+ ", food4=" + food4 + ", food5=" + food5 + "]";
 	}
+	
 	
 	
 	

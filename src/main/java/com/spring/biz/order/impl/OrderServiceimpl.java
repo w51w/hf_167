@@ -18,7 +18,10 @@ public class OrderServiceimpl implements OrderService{
 	public List<OrderVO> getOrder_List(OrderVO vo) {
 		return orderDAO.getOrder_List(vo);
 	}
-	
-	
 
+	@Override
+	public void orderType(OrderVO vo) throws Exception {
+		orderDAO.orderType(vo);
+	}
+	
 }

@@ -14,19 +14,26 @@ import com.spring.biz.order.OrderService;
 import com.spring.biz.order.OrderVO;
 
 @Repository("orderDAO")
-public class OrderDAO implements OrderService {
+public class OrderDAO {
 	
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private String getOrder_List = "SELECT  o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, user.o.type FROM user.order as o JOIN order_detail as d ON o.seq = d.order_seq ORDER BY o.seq;";
+	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167.o.type FROM hf_167.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167.o.type = 1 ORDER BY o.seq;";
 	private String getOrderLog_List = "SELECT * FROM ORDER_DETAIL";
+	private String orderType = "UPDATE hf_167.order SET type = 2 WHERE SEQ =?";
 	
-	@Override
+	
 	public List<OrderVO> getOrder_List(OrderVO vo) {
 		return jdbcTemplate.query(getOrder_List, new OrderRowMapper());
 	}
 	
+	
+	
+	public void orderType(OrderVO vo) throws Exception {
+		System.out.println(vo.toString());
+		jdbcTemplate.update(orderType, vo.getSeq());
+	}
 	
 //	<th>주소</th>  order테이블 = address
 //    <th>상세주소</th> order테이블= address_detail
@@ -36,6 +43,7 @@ public class OrderDAO implements OrderService {
 	class OrderRowMapper implements RowMapper<OrderVO> {
 		public OrderVO mapRow(ResultSet rs, int rowNum) throws SQLException {
 			OrderVO orderVO = new OrderVO();
+			orderVO.setSeq(rs.getInt("SEQ"));
 			orderVO.setUser_e_mail(rs.getString("USER_E_MAIL"));
 			orderVO.setAddress(rs.getString("ADDRESS"));
 			orderVO.setAddress_detail(rs.getString("ADDRESS_DETAIL"));

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonObjectFormatVisitor;
@@ -30,18 +31,24 @@ public class OrderController {
 		List<OrderVO> list = new ArrayList();
 		ObjectMapper mapper = new ObjectMapper();
 		list = orderService.getOrder_List(vo); 
+		list.get(0).getFood1().replace("food", "АЁАн");
+		System.out.println(list.toString());
 		try {
-			Map<String, String> map = mapper.readValue(list.get(0).getFood1(), Map.class);
-			model.addAttribute("food1", map);
 			model.addAttribute("orderList", list);
 			
-		} catch(IOException e) {
+		} catch(Exception e) {
 			e.printStackTrace();
 		}
-
-
-		
 		return "order.jsp";
+	}
+	
+	
+	@RequestMapping("/orderType.do")
+	public String orderType(@RequestParam int seq, OrderVO vo) throws Exception {
+		vo.setType(seq);
+		orderService.orderType(vo);
+		System.out.println(vo.toString());
+		return "order.do";
 	}
 	
 	

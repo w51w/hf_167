@@ -314,6 +314,7 @@
                       <th>상세주소</th>
                       <th>상태</th>
                       <th>주문메뉴 및 수량</th>
+                      <th>주문처리</th>
                     </tr>
                   </thead>
                   <tfoot>
@@ -332,9 +333,9 @@
 					    	<p><c:out value="${order.food4 }"/></p>	
 					    	<p><c:out value="${order.food5 }"/></p>
 					    </td>
+					    <td><button id="orderType" name="orderType" onclick="location.href='orderType.do?seq=${order.seq}'" class="mb-4 btn btn-primary">주문처리</button></td>
 					  </tr>
 					</c:forEach>
-					
                   </tbody>
                 </table>
               </div>
