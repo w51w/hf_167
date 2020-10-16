@@ -24,8 +24,13 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String insertUsert_clinet(UserDTO vo) {
-		return userDAO.insertUsert_clinet(vo);
+	public String insertUser_clinet(UserDTO vo) {
+		return userDAO.insertUser_clinet(vo);
+	}
+
+	@Override
+	public String updateUser_client(String e_mail, String address) {
+		return userDAO.updateUser_client(e_mail, address);
 	}
 
 }

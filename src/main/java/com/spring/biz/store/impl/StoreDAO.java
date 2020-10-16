@@ -87,13 +87,11 @@ public class StoreDAO {
 					temp2.setFood_img(rs.getString("food_img"));
 					temp2.setFood_opt(rs.getString("food_opt"));
 					temp1.child.add(temp2);
-					System.out.println(temp1.toString());
 				}
 				temp1.setType(0);
 				temp1.setMenubar(menubar.get(i));
 				data.add(temp1);		//메뉴바가 하나 이상이면 for 문 안에서 add 시켜야 됨
 			}
-			System.out.println(data.toString());
 			list.setList(data);
 		}
 		catch(Exception e) {

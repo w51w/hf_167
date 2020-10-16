@@ -32,10 +32,8 @@ public class UserController_Client {
 		UserDTO vo = new UserDTO();
 		vo.setE_mail(e_mail);
 		vo.setPassword(password);
-		
-		result = userService.getUser_client(e_mail, password);
 				
-		return result;
+		return userService.getUser_client(e_mail, password);
 	}
 	
 	@RequestMapping(value = "/user_register.do")
@@ -57,8 +55,16 @@ public class UserController_Client {
 		vo.setSex(sex);
 		vo.setAge(Integer.parseInt(age));
 		
-		String result = userService.insertUsert_clinet(vo);
 		
-		return result;
+		return userService.insertUser_clinet(vo);
+	}
+	
+	@RequestMapping(value = "/user_address_update.do")
+	@ResponseBody
+	public String address_update(HttpServletRequest request) {
+		String e_mail = request.getParameter("e_mail");
+		String address = request.getParameter("address");
+		return userService.updateUser_client(e_mail, address);
+		
 	}
 }

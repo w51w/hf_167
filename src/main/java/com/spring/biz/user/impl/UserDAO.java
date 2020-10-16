@@ -21,6 +21,7 @@ public class UserDAO  {
 	
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
 	private final String USER_INSERT = "insert into user (e_mail, password, name, phone, sex, age) values(?,?,?,?,?,?)";
+	private final String USER_ADDRESS_UPDATE = "update user set address=? where e_mail=?";
 	
 	public Map<String, String> getUser_client(String e_mail, String password) {
 		Map<String, String> map_user = null;
@@ -54,7 +55,7 @@ public class UserDAO  {
 		return map_user;
 	}
 	
-	public String insertUsert_clinet(UserDTO vo) {
+	public String insertUser_clinet(UserDTO vo) {
 		String result = null;
 		try {
 			conn = JDBCUtil.getConnection();
@@ -79,6 +80,20 @@ public class UserDAO  {
 			JDBCUtil.close(pstmt, conn);
 		}
 		return result;
-		
+	}
+	
+	public String updateUser_client(String e_mail, String address) {
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(USER_ADDRESS_UPDATE);
+			pstmt.setString(1, address);
+			pstmt.setString(2, e_mail);
+			if(pstmt.executeUpdate() == 1) {
+				return "true";
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "false";
 	}
 }
