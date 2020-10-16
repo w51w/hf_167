@@ -2,6 +2,9 @@ package com.spring.biz.admin;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
+
 public interface AdminService {
 
 	// 기능 구현

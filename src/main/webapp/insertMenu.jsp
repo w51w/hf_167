@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,17 +11,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>관리자 페이지</title>
+  <title>SB Admin 2 - Blank</title>
 
-  <!-- Custom fonts for this template -->
+  <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
 
-  <!-- Custom styles for this template -->
+  <!-- Custom styles for this template-->
   <link href="css/sb-admin-2.min.css" rel="stylesheet">
-
-  <!-- Custom styles for this page -->
-  <link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
 
 </head>
@@ -59,7 +57,7 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-         <!-- Nav Item - Charts -->
+      <!-- Nav Item - Charts -->
       <li class="nav-item active">
         <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
@@ -67,25 +65,25 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="menu.jsp">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="order.do">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="order.jsp">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="#">
           <span>고객관리</span></a>
       </li>
 
@@ -100,6 +98,7 @@
     </ul>
     <!-- End of Sidebar -->
 
+
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
@@ -110,11 +109,9 @@
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
           <!-- Sidebar Toggle (Topbar) -->
-          <form class="form-inline">
-            <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
-              <i class="fa fa-bars"></i>
-            </button>
-          </form>
+          <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+            <i class="fa fa-bars"></i>
+          </button>
 
           <!-- Topbar Search -->
           <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
@@ -261,7 +258,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Valerie Luna</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><c:out value="${ adminUser.store_name}"></c:out></span>
                 <img class="img-profile rounded-circle" src="https://source.unsplash.com/QAB-WJcbgJk/60x60">
               </a>
               <!-- Dropdown - User Information -->
@@ -294,42 +291,28 @@
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
-          <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+            <!-- Page Heading -->
+            <h1 class="h3 mb-4 text-gray-800">점포관리</h1>
+            <p class="mb-4">매장위치 및 정보등록</p>
 
-
-          <!-- DataTales Example -->
-          <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">점포관리</h6>
-            </div>
-            <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>번호</th>
-                      <th>가게이름</th>
-                      <th>음식이름</th>
-                      <th>가격</th>
-                      <th>이미지</th>
-                      <th>옵션 1</th>
-                      <th>옵션 2</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-
-                  </tfoot>
-                  <tbody>
-
-
-                  </tbody>
-                </table>
+            <div class="card shadow mb-4">
+              <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">매장정보 등록</h6>
+              </div>
+              <div class="card-body">
+              <form action="insertMenu.do">
+                <input type = "text" name = store_name value='<c:out value="${ adminUser.store_name}"></c:out>'>
+                <p class="mb-2">메뉴바 설정</p>
+                <input class="form-control-user" name="type" type="number" min="0" max="1" />
+                <input class="form-control-user" name="menubar" type="text" placeholder ="메뉴바 이름을 입력하세요" style="width: 400px"/>
+                <p class="mb-2" style="padding-top: 20px">메뉴명</p>
+                <input class="form-control-user" name="food" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
+                <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food_price" type="number" min="0" style="width: 500px" /><p>
+                <button id="insertMenu" class="mb-4 btn btn-primary">메뉴등록</button>
+                </form>
               </div>
             </div>
           </div>
-
-          <button>insert</button>
 
         </div>
         <!-- /.container-fluid -->
@@ -387,15 +370,6 @@
   <!-- Custom scripts for all pages-->
   <script src="js/sb-admin-2.min.js"></script>
 
-  <!-- Page level plugins -->
-  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
-  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
-
-  <!-- Page level custom scripts -->
-  <script src="js/demo/datatables-demo.js"></script>
-
 </body>
 
 </html>
-
-

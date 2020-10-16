@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,26 +61,26 @@
       <hr class="sidebar-divider">
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item active">
-        <a class="nav-link" href="charts.html">
+      <li class="nav-item">
+        <a class="nav-link" href="index.do">
           <span>점포관리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="getMenuList.do">
           <span>메뉴등록</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
-      <li class="nav-item ">
-        <a class="nav-link" href="tables.html">
+      <li class="nav-item active">
+        <a class="nav-link" href="order.do">
           <span>주문처리</span></a>
       </li>
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="tables.html">
+        <a class="nav-link" href="orderLog.jsp">
           <span>주문로그</span></a>
       </li>
 
@@ -311,16 +312,30 @@
                       <th>아이디</th>
                       <th>주소</th>
                       <th>상세주소</th>
-                      <th>주문메뉴 및 수량</th>
                       <th>상태</th>
+                      <th>주문메뉴 및 수량</th>
+                      <th>주문처리</th>
                     </tr>
                   </thead>
                   <tfoot>
 
                   </tfoot>
                   <tbody>
-
-
+					<c:forEach  items="${ orderList}" var="order">
+					  <tr>
+					    <td><c:out value="${order.user_e_mail }"/></td>
+					    <td><c:out value="${order.address }"/></td>
+					    <td><c:out value="${order.address_detail }"/></td>
+					    <td><c:out value="${order.type }"/></td>
+					    <td><p><c:out value="${order.food1 }"/></p>
+					    	<p><c:out value="${order.food2 }"/></p>
+					    	<p><c:out value="${order.food3 }"/></p>
+					    	<p><c:out value="${order.food4 }"/></p>	
+					    	<p><c:out value="${order.food5 }"/></p>
+					    </td>
+					    <td><button id="orderType" name="orderType" onclick="location.href='orderType.do?seq=${order.seq}'" class="mb-4 btn btn-primary">주문처리</button></td>
+					  </tr>
+					</c:forEach>
                   </tbody>
                 </table>
               </div>

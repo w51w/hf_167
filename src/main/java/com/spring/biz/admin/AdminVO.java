@@ -124,13 +124,17 @@ public class AdminVO {
 	}
 	
 	
+	
 	// toString()
 	@Override
 	public String toString() {
 		return "AdminVO [name=" + name + ", category_code=" + category_code + ", tel=" + tel + ", location=" + location
-				+ ", delivery_price=" + delivery_price + ", least_price=" + least_price + ", info=" + info
-				+ ", condition=" + condition + "]";
+				+ ", delivery_price=" + delivery_price + ", least_price=" + least_price + ", rate=" + rate + ", info="
+				+ info + ", condition=" + condition + ", seq=" + seq + ", store_name=" + store_name + ", type=" + type
+				+ ", menubar=" + menubar + ", food=" + food + ", food_price=" + food_price + ", food_img=" + food_img
+				+ "]";
 	}
+	
 	
 	
 }
