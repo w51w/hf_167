@@ -1,4 +1,4 @@
-package com.spring.biz.order.impl;
+package com.spring.biz.admin.impl;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,8 +10,8 @@ import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
 import com.spring.biz.admin.AdminVO;
-import com.spring.biz.order.OrderService;
-import com.spring.biz.order.OrderVO;
+import com.spring.biz.admin.OrderVO;
+
 
 @Repository("orderDAO")
 public class OrderDAO {
@@ -19,7 +19,7 @@ public class OrderDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167.o.type FROM hf_167.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167.o.type = 1 ORDER BY o.seq;";
+	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, user.o.type FROM user.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE user.o.type = 1 ORDER BY o.seq;";
 	private String getOrderLog_List = "SELECT * FROM ORDER_DETAIL";
 	private String orderType = "UPDATE hf_167.order SET type = 2 WHERE SEQ =?";
 	

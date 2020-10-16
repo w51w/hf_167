@@ -1,12 +1,13 @@
-package com.spring.biz.order.impl;
+package com.spring.biz.admin.impl;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.biz.order.OrderService;
-import com.spring.biz.order.OrderVO;
+import com.spring.biz.admin.OrderService;
+import com.spring.biz.admin.OrderVO;
+
 
 @Service("orderService")
 public class OrderServiceimpl implements OrderService{

@@ -1,4 +1,4 @@
-package com.spring.biz.order;
+package com.spring.biz.admin;
 
 public class OrderVO {
 	
