@@ -314,8 +314,7 @@
                       <th>음식이름</th>
                       <th>가격</th>
                       <th>이미지</th>
-                      <th>옵션 1</th>
-                      <th>옵션 2</th>
+                      <th>옵션</th>
                       <th>삭제</th>
                     </tr>
                   </thead>

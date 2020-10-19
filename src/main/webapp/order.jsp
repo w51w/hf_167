@@ -333,7 +333,7 @@
 					    	<p><c:out value="${order.food4 }"/></p>	
 					    	<p><c:out value="${order.food5 }"/></p>
 					    </td>
-					    <td><button id="orderType" name="orderType" onclick="location.href='orderType.do?seq=${order.seq}'" class="mb-4 btn btn-primary">주문처리</button></td>
+					    <td><button id="orderType" name="orderPrcess" onclick="location.href='orderProcess.do?seq=${order.seq}'" class="mb-4 btn btn-primary">주문처리</button></td>
 					  </tr>
 					</c:forEach>
                   </tbody>

@@ -21,8 +21,28 @@ public class OrderServiceimpl implements OrderService{
 	}
 
 	@Override
-	public void orderType(OrderVO vo) throws Exception {
-		orderDAO.orderType(vo);
+	public void orderProcess(OrderVO vo) throws Exception {
+		orderDAO.orderProcess(vo);
 	}
+
+	@Override
+	public void orderDelivery(OrderVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderEnd(OrderVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void orderCancel(OrderVO vo) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
 	
 }

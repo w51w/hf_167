@@ -310,6 +310,7 @@
                     <tr>
                       <th>아이디</th>
                       <th>주소</th>
+                      <th>상세주소</th>
                       <th>주문날짜</th>
                       <th>주문메뉴</th>
                     </tr>
@@ -318,8 +319,20 @@
 
                   </tfoot>
                   <tbody>
-
-
+                  <c:forEach  items="${ orderLog}" var="log">
+					  <tr>
+					    <td><c:out value="${log.user_e_mail }"/></td>
+					    <td><c:out value="${log.address }"/></td>
+					    <td><c:out value="${log.address_detail }"/></td>
+					    <td><c:out value="${log.date_order }"/></td>
+					    <td><p><c:out value="${log.food1 }"/></p>
+					    	<p><c:out value="${log.food2 }"/></p>
+					    	<p><c:out value="${log.food3 }"/></p>
+					    	<p><c:out value="${log.food4 }"/></p>	
+					    	<p><c:out value="${log.food5 }"/></p>
+					    </td>
+					</tr>
+					</c:forEach>
                   </tbody>
                 </table>
               </div>

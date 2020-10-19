@@ -74,7 +74,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="getMenuList.do">
+        <a class="nav-link" href="getMenuList.do?store_name=${ adminUser.store_name}">
           <span>메뉴등록</span></a>
       </li>
 

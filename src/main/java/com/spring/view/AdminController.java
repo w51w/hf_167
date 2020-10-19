@@ -38,8 +38,9 @@ public class AdminController {
 	
 	// 메뉴 목록
 	@RequestMapping("/getMenuList.do")
-	public String getMenuList(AdminVO vo, AdminDAO adminDAO, Model model) {
+	public String getMenuList(@RequestParam("store_name") String store_name, AdminVO vo, Model model) {
 		System.out.println("메뉴 목록 출력");
+		vo.setStore_name(store_name);
 		model.addAttribute("menuList", adminService.getMenuList(vo));
 		return "getMenuList.jsp";
 	}
@@ -108,13 +109,89 @@ public class AdminController {
 		}
 		return "order.jsp";
 	}
-				
+	
+	// 주문로그 출력
+	@RequestMapping("/orderLog.do")
+	public String orderLog(OrderVO vo, Model model) {
+		List<OrderVO> list = new ArrayList();
+		ObjectMapper mapper = new ObjectMapper();
+					
+		list = orderService.getOrder_List(vo); 
+					
+		try {
+		// JSON 파싱을 통한 데이터 삽입
+			HashMap<String, String> map = new HashMap<String, String>();
+			for(int i = 0; i < list.size(); i++) {
+							
+				map = mapper.readValue(list.get(i).getFood1(), HashMap.class);
+				if(list.get(i).getFood1() != null) {
+					vo.setFood1("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+					list.get(i).setFood1(vo.getFood1());	
+				}
+				else if(list.get(i).getFood1() == null) {
+					return "orderLog.jsp";
+				}
+				if (list.get(i).getFood2() != null) {
+					map = mapper.readValue(list.get(i).getFood2(), HashMap.class);
+					vo.setFood2("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+					list.get(i).setFood2(vo.getFood2());
+					System.out.println(list.get(i).getFood1());
+					
+					if(list.get(i).getFood3() != null) {
+						map = mapper.readValue(list.get(i).getFood3(), HashMap.class);
+						vo.setFood3("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+						list.get(i).setFood3(vo.getFood3());
+									
+						if(list.get(i).getFood4() != null) {
+							map = mapper.readValue(list.get(i).getFood4(), HashMap.class);
+							vo.setFood4("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+							list.get(i).setFood4(vo.getFood4());
+							
+							if(list.get(i).getFood5() != null) {
+								map = mapper.readValue(list.get(i).getFood5(), HashMap.class);
+								vo.setFood5("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+								list.get(i).setFood5(vo.getFood5());
+							}
+						}
+					}
+				}
+									
+			}
+						
+			model.addAttribute("orderLog", list);
+						
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return "orderLog.jsp";
+	}
+	
+	// 제일 마지막
 	// 주문상태 처리 - 주문처리, 배달중, 배달완료, 주문취소
-	@RequestMapping("/orderType.do")
-	public String orderType(@RequestParam int seq, OrderVO vo) throws Exception {
-		vo.setType(seq);
-		orderService.orderType(vo);
+	@RequestMapping("/orderProcess.do")
+	public String orderProcess(@RequestParam int seq, @RequestParam int type , OrderVO vo) throws Exception {
+		vo.setSeq(seq);
+		vo.setType(type);
+		orderService.orderProcess(vo);
 		System.out.println(vo.toString());
+		return "order.do";
+	}
+	
+	@RequestMapping("/orderDelivery.do")
+	public String orderDelivery(@RequestParam int seq, OrderVO vo) {
+		vo.setSeq(seq);
+		return "order.do";
+	}
+	
+	@RequestMapping("/orderEnd.do")
+	public String orderEnd(@RequestParam int seq, OrderVO vo) {
+		vo.setSeq(seq);
+		return "order.do";
+	}
+	
+	@RequestMapping("/orderCancel.do")
+	public String orderCancel(@RequestParam int seq, OrderVO vo) {
+		vo.setSeq(seq);
 		return "order.do";
 	}
 	
