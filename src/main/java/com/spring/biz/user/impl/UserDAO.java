@@ -22,6 +22,7 @@ public class UserDAO  {
 	private final String USER_GET = "select * from user where e_mail=? and password=?";
 	private final String USER_INSERT = "insert into user (e_mail, password, name, phone, sex, age) values(?,?,?,?,?,?)";
 	private final String USER_ADDRESS_UPDATE = "update user set address=? where e_mail=?";
+	private final String USER_ADDRESS_DETAIL_UPDATE = "update user set address_detail=? where e_mail=?";
 	
 	public Map<String, String> getUser_client(String e_mail, String password) {
 		Map<String, String> map_user = null;
@@ -82,11 +83,18 @@ public class UserDAO  {
 		return result;
 	}
 	
-	public String updateUser_client(String e_mail, String address) {
+	public String updateUser_client(String isDetail, String e_mail, String address, String address_detail) {
 		try {
 			conn = JDBCUtil.getConnection();
-			pstmt = conn.prepareStatement(USER_ADDRESS_UPDATE);
-			pstmt.setString(1, address);
+			
+			if(isDetail.equals("true")) {
+				pstmt = conn.prepareStatement(USER_ADDRESS_DETAIL_UPDATE);
+				pstmt.setString(1, address_detail);
+			}
+			else {
+				pstmt = conn.prepareStatement(USER_ADDRESS_UPDATE);
+				pstmt.setString(1, address);
+			}
 			pstmt.setString(2, e_mail);
 			if(pstmt.executeUpdate() == 1) {
 				return "true";

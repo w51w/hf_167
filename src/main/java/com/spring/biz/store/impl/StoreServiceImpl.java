@@ -3,6 +3,7 @@ package com.spring.biz.store.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.biz.store.StoreDTO;
 import com.spring.biz.store.StoreListDTO;
 import com.spring.biz.store.StoreMenuListDTO;
 import com.spring.biz.store.StoreService;
@@ -14,6 +15,11 @@ public class StoreServiceImpl implements StoreService {
 	private StoreDAO storeDAO;
 
 	@Override
+	public StoreDTO getStore_clinet(String store_name) {
+		return storeDAO.getStore_clinet(store_name);
+	}
+	
+	@Override
 	public StoreListDTO getStoreList_client(int code) {
 		return storeDAO.getStoreList_client(code);
 	}
@@ -22,6 +28,8 @@ public class StoreServiceImpl implements StoreService {
 	public StoreMenuListDTO getMenu_client(String store_name) {
 		return storeDAO.getMenu_client(store_name);
 	}
+
+	
 
 	
 }

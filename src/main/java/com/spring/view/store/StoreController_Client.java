@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.spring.biz.store.StoreDTO;
 import com.spring.biz.store.StoreListDTO;
 import com.spring.biz.store.StoreMenuListDTO;
 import com.spring.biz.store.StoreService;
@@ -15,6 +16,12 @@ import com.spring.biz.store.StoreService;
 public class StoreController_Client {
 	@Autowired
 	private StoreService storeService;
+	
+	@RequestMapping(value = "/getStore.do")
+	public StoreDTO getStore(HttpServletRequest request) {
+		String store_name = request.getParameter("store_name");
+		return storeService.getStore_clinet(store_name);
+	}
 	
 	@RequestMapping(value = "/storeList.do")
 	public StoreListDTO StoreList(HttpServletRequest request){

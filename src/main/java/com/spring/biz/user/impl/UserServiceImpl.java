@@ -29,8 +29,8 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public String updateUser_client(String e_mail, String address) {
-		return userDAO.updateUser_client(e_mail, address);
+	public String updateUser_client(String isDetail, String e_mail, String address, String address_detail) {
+		return userDAO.updateUser_client(isDetail, e_mail, address, address_detail);
 	}
 
 }

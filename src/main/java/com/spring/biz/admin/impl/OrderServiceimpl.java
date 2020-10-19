@@ -9,7 +9,7 @@ import com.spring.biz.admin.OrderService;
 import com.spring.biz.admin.OrderVO;
 
 
-@Service("orderService")
+@Service("admin_orderService")
 public class OrderServiceimpl implements OrderService{
 
 	@Autowired

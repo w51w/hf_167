@@ -8,5 +8,5 @@ public interface UserService {
 	
 	String insertUser_clinet(UserDTO vo);
 	
-	String updateUser_client(String e_mail, String address);
+	String updateUser_client(String isDetail, String e_mail, String address, String address_detail);
 }

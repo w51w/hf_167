@@ -20,9 +20,41 @@ public class StoreDAO {
 	private PreparedStatement pstmt = null;
 	private ResultSet rs = null;
 	
+	private final String GET_STORE = "select * from store where name=?";
+	//
 	private final String GET_STORE_LIST = "select * from store where category_code=?";
 	private final String GET_STORE_MENU_HEAD ="select * from menu where store_name = ? and type = 0";
 	private final String GET_STORE_MENU_CHILD ="select * from menu where store_name = ? and menubar = ? and type = 1";
+	
+	public StoreDTO getStore_clinet(String store_name) {
+		StoreDTO storeDTO = new StoreDTO();
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(GET_STORE);
+			pstmt.setString(1, store_name);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				storeDTO.setName(rs.getString("name"));
+				storeDTO.setCategory_name(rs.getInt("category_code"));
+				storeDTO.setTel(rs.getString("tel"));
+				storeDTO.setLocation(rs.getString("location"));
+				storeDTO.setDelivery_price(rs.getInt("delivery_price"));
+				storeDTO.setStore_img(rs.getString("store_img"));
+				storeDTO.setLeast_price(rs.getInt("least_price"));
+				storeDTO.setRate(rs.getDouble("rate"));
+				storeDTO.setInfo(rs.getString("info"));
+				storeDTO.setCondition(rs.getString("condition"));
+				System.out.println(storeDTO.toString());
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+		return storeDTO;
+	}
 	
 	public StoreListDTO getStoreList_client(int code) {
 		StoreListDTO storeListDTO = new StoreListDTO();

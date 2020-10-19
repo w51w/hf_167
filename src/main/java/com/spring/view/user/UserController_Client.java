@@ -62,9 +62,11 @@ public class UserController_Client {
 	@RequestMapping(value = "/user_address_update.do")
 	@ResponseBody
 	public String address_update(HttpServletRequest request) {
+		String isDetail = request.getParameter("isDetail");
 		String e_mail = request.getParameter("e_mail");
 		String address = request.getParameter("address");
-		return userService.updateUser_client(e_mail, address);
+		String address_detail = request.getParameter("address_detail");
+		return userService.updateUser_client(isDetail, e_mail, address, address_detail);
 		
 	}
 }

@@ -71,6 +71,12 @@ public class StoreDTO {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+	@Override
+	public String toString() {
+		return "StoreDTO [name=" + name + ", category_name=" + category_name + ", tel=" + tel + ", location=" + location
+				+ ", delivery_price=" + delivery_price + ", store_img=" + store_img + ", least_price=" + least_price
+				+ ", rate=" + rate + ", info=" + info + ", condition=" + condition + "]";
+	}
 	
 	
 }

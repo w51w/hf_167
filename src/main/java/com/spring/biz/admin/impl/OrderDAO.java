@@ -13,7 +13,7 @@ import com.spring.biz.admin.AdminVO;
 import com.spring.biz.admin.OrderVO;
 
 
-@Repository("orderDAO")
+@Repository("admin_orderDAO")
 public class OrderDAO {
 	
 	@Autowired
