@@ -86,7 +86,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="orderLog.do">
           <span>주문로그</span></a>
       </li>
       
@@ -326,15 +326,13 @@
 
                   </tfoot>
                   <tbody>
-					<c:forEach items="${ adminList}" var="admin">
 					  <tr>
-					    <td><c:out value="${admin.info }"/></td>
-					    <td><c:out value="${admin.location }"/></td>
-					    <td><c:out value="${admin.tel }"/></td>
-					    <td><c:out value="${admin.delivery_price }"/></td>
-					    <td><c:out value="${admin.least_price }"/></td>
+					    <td><c:out value="${adminList.info }"/></td>
+					    <td><c:out value="${adminList.location }"/></td>
+					    <td><c:out value="${adminList.tel }"/></td>
+					    <td><c:out value="${adminList.delivery_price }"/></td>
+					    <td><c:out value="${adminList.least_price }"/></td>
 					  </tr>
-					</c:forEach>
                   </tbody>
                 </table>
               </div>

@@ -10,7 +10,7 @@ public interface AdminService {
 	// 기능 구현
 	
 	// 점포정보
-	List<AdminVO> getAdminList(AdminVO vo);
+	AdminVO getAdminList(AdminVO vo);
 	
 	void updateAdmin(AdminVO vo);
 	

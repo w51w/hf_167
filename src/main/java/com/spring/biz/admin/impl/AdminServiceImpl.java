@@ -15,7 +15,7 @@ public class AdminServiceImpl implements AdminService {
 	private AdminDAO adminDAO;
 	
 
-	public List<AdminVO> getAdminList(AdminVO vo){
+	public AdminVO getAdminList(AdminVO vo){
 		return adminDAO.getAdminList(vo);
 	}
 

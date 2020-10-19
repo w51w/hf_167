@@ -9,7 +9,7 @@ public class JDBCUtil {
 	public static Connection getConnection() {
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			String url = "jdbc:mysql://127.0.0.1:3360/hf_167?serverTimezone=Asia/Seoul";
+			String url = "jdbc:mysql://localhost:3306/user?serverTimezone=Asia/Seoul";
 			return DriverManager.getConnection(url,"root","1234");
 		}
 		catch(Exception e) {

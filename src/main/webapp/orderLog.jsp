@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,7 +68,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="getMenuList.do">
+        <a class="nav-link" href="getMenuList.do?store_name=${ adminUser.store_name}">
           <span>메뉴등록</span></a>
       </li>
 
@@ -79,7 +80,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="orderLog.do">
           <span>주문로그</span></a>
       </li>
 
@@ -311,6 +312,7 @@
                       <th>아이디</th>
                       <th>주소</th>
                       <th>상세주소</th>
+                      <th>주문상태</th>
                       <th>주문날짜</th>
                       <th>주문메뉴</th>
                     </tr>
@@ -324,6 +326,7 @@
 					    <td><c:out value="${log.user_e_mail }"/></td>
 					    <td><c:out value="${log.address }"/></td>
 					    <td><c:out value="${log.address_detail }"/></td>
+					    <td><c:out value="${log.type }"/></td>
 					    <td><c:out value="${log.date_order }"/></td>
 					    <td><p><c:out value="${log.food1 }"/></p>
 					    	<p><c:out value="${log.food2 }"/></p>

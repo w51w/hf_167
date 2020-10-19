@@ -8,6 +8,7 @@ public class OrderVO {
 	private String address;
 	private String address_detail;
 	private String user_e_mail;
+	private String store_name;
 	private Date date_order;
 	private int type;
 	private String food1;
@@ -82,6 +83,12 @@ public class OrderVO {
 	}
 	public void setDate_order(Date date_order) {
 		this.date_order = date_order;
+	}
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
 	}
 	
 	

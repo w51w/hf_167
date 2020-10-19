@@ -68,7 +68,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item active">
-        <a class="nav-link" href="getMenuList.do">
+        <a class="nav-link" href="getMenuList.do?store_name=${ adminUser.store_name}">
           <span>메뉴등록</span></a>
       </li>
 
@@ -80,7 +80,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="orderLog.do">
           <span>주문로그</span></a>
       </li>
 
@@ -328,8 +328,7 @@
 							<td><c:out value="${menu.store_name }"/></td>
 							<td><c:out value="${menu.food}"/></td>
 							<td><c:out value="${menu.food_price }"/></td>
-							<td><c:out value="${menu.food_img }"/></td>
-							<td><c:out value="${menu.seq }"/></td>
+							<td>상품이미지</td>
 							<td><c:out value="${menu.seq }"/></td>
 							<td><button id="deleteMenu" name="deleteMenu" onclick="location.href='deleteMenu.do?seq=${menu.seq}'" class="mb-4 btn btn-primary">메뉴삭제</button></td>
 					
