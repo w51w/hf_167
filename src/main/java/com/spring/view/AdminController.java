@@ -39,8 +39,11 @@ public class AdminController {
 	public String getAdminList(HttpSession session, AdminVO vo, Model model) {
 		AdminUserVO userVO = (AdminUserVO)session.getAttribute("adminUser");
 		vo.setName(userVO.getStore_name());
-		System.out.println("테스트 확인---------------------------------------------------");
-		model.addAttribute("adminList", adminService.getAdminList(vo));
+		AdminVO list = new AdminVO();
+		list = adminService.getAdminList(vo);
+		list.setStore_img("http://192.168.219.101:8080/biz/" + list.getStore_img());
+		System.out.println(list.getStore_img());
+		model.addAttribute("adminList", list);
 		return "index.jsp";
 	}
 	
@@ -55,7 +58,13 @@ public class AdminController {
 	@RequestMapping("/getMenuList.do")
 	public String getMenuList(@ModelAttribute("adminList") AdminVO vo, Model model) {
 		System.out.println("메뉴 목록 출력");
-		model.addAttribute("menuList", adminService.getMenuList(vo));
+		List<AdminVO> list = new ArrayList<AdminVO>();
+		list = adminService.getMenuList(vo);
+		for (int i = 0; i < list.size(); i++) {
+			list.get(i).setFood_img("http://192.168.219.101:8080/biz/" + list.get(i).getFood_img());
+		}
+		System.out.println(list);
+		model.addAttribute("menuList", list);
 		return "getMenuList.jsp";
 	}
 	// 메뉴 등록

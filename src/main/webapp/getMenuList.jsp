@@ -328,8 +328,8 @@
 							<td><c:out value="${menu.store_name }"/></td>
 							<td><c:out value="${menu.food}"/></td>
 							<td><c:out value="${menu.food_price }"/></td>
-							<td>상품이미지</td>
-							<td><c:out value="${menu.seq }"/></td>
+							<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." src="<c:out value="${menu.food_img}"/>" /></td>
+							<td><c:out value="${menu.food_opt }"/></td>
 							<td><button id="deleteMenu" name="deleteMenu" onclick="location.href='deleteMenu.do?seq=${menu.seq}'" class="mb-4 btn btn-primary">메뉴삭제</button></td>
 					
 						</tr>

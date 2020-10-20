@@ -315,6 +315,8 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
+                      <th>가게이미지</th>
+                      <th>가게이름</th>
                       <th>가게 소개</th>
                       <th>가게 위치</th>
                       <th>전화번호</th>
@@ -326,7 +328,9 @@
 
                   </tfoot>
                   <tbody>
-					  <tr>
+					  <tr>				  
+					  	<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." src="<c:out value="${adminList.store_img}"/>" /></td>
+					  	<td><c:out value="${adminList.name }"/></td>
 					    <td><c:out value="${adminList.info }"/></td>
 					    <td><c:out value="${adminList.location }"/></td>
 					    <td><c:out value="${adminList.tel }"/></td>

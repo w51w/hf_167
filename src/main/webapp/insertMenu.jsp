@@ -48,15 +48,6 @@
       <!-- Divider -->
       <hr class="sidebar-divider">
 
-      <!-- Heading -->
-      <div class="sidebar-heading">
-        Interface
-      </div>
-
-
-      <!-- Divider -->
-      <hr class="sidebar-divider">
-
       <!-- Nav Item - Charts -->
       <li class="nav-item active">
         <a class="nav-link" href="index.do">
@@ -65,7 +56,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item">
-        <a class="nav-link" href="getMenuList.do">
+        <a class="nav-link" href="getMenuList.do?store_name=${ adminUser.store_name}">
           <span>메뉴등록</span></a>
       </li>
 
@@ -77,10 +68,10 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="orderLog.jsp">
+        <a class="nav-link" href="orderLog.do">
           <span>주문로그</span></a>
       </li>
-
+      
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
         <a class="nav-link" href="#">
@@ -305,6 +296,10 @@
                 <p class="mb-2">메뉴바 설정</p>
                 <input class="form-control-user" name="type" type="number" min="0" max="1" />
                 <input class="form-control-user" name="menubar" type="text" placeholder ="메뉴바 이름을 입력하세요" style="width: 400px"/>
+                
+                <p class="mb-2">이미지</p>
+                <input class="form-control-user" name="food_img" type="file" />
+                
                 <p class="mb-2" style="padding-top: 20px">메뉴명</p>
                 <input class="form-control-user" name="food" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
                 <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food_price" type="number" min="0" style="width: 500px" /><p>

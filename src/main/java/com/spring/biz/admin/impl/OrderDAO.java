@@ -19,20 +19,11 @@ public class OrderDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-<<<<<<< HEAD
-
-	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167_2차수정.o.type FROM hf_167_2차수정.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167_2차수정.o.type = 0 AND o.store_name=? ORDER BY o.seq";
-	private String getOrderLog_List = "SELECT o.seq, o.user_e_mail, o.address, o.address_detail, o.date_order, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167_2차수정.o.type FROM hf_167_2차수정.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE o.store_name=? ORDER BY o.seq";
-	private String orderDelivery = "UPDATE hf_167_2차수정.order SET type =1 WHERE SEQ =?";
-	private String orderEnd = "UPDATE hf_167_2차수정.order SET type =2 WHERE SEQ =?";
-	private String orderCancel = "UPDATE hf_167_2차수정.order SET type = 3 WHERE SEQ =?";
-=======
-	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167.o.type FROM hf_167.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167.o.type = 0 AND o.store_name=? ORDER BY o.seq;";
-	private String getOrderLog_List = "SELECT o.seq, o.user_e_mail, o.address, o.address_detail, o.date_order, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167.o.type FROM hf_167.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE o.store_name=? ORDER BY o.seq";
-	private String orderDelivery = "UPDATE hf_167.order SET type =1 WHERE SEQ =?";
-	private String orderEnd = "UPDATE hf_167.order SET type =2 WHERE SEQ =?";
-	private String orderCancel = "UPDATE hf_167.order SET type = 3 WHERE SEQ =?";
->>>>>>> db2fbb2a4f481b1be004143d8414b27ef4608bad
+	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, user.o.type FROM user.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE user.o.type = 0 AND o.store_name=? ORDER BY o.seq;";
+	private String getOrderLog_List = "SELECT o.seq, o.user_e_mail, o.address, o.address_detail, o.date_order, d.food1, d.food2, d.food3, d.food4, d.food5, user.o.type FROM user.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE o.store_name=? ORDER BY o.seq";
+	private String orderDelivery = "UPDATE user.order SET type =1 WHERE SEQ =?";
+	private String orderEnd = "UPDATE user.order SET type =2 WHERE SEQ =?";
+	private String orderCancel = "UPDATE user.order SET type = 3 WHERE SEQ =?";
 
 	
 	

@@ -12,6 +12,7 @@ public class AdminVO {
 	private float rate;
 	private String info;
 	private String condition;
+	private String store_img;
 	
 	
 	// MENU VO
@@ -83,9 +84,15 @@ public class AdminVO {
 	public void setCondition(String condition) {
 		this.condition = condition;
 	}
+	public String getStore_img() {
+		return store_img;
+	}
+	public void setStore_img(String store_img) {
+		this.store_img = store_img;
+	}
 	
 	
-	
+	// menu
 	public int getSeq() {
 		return seq;
 	}

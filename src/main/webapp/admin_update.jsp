@@ -304,10 +304,17 @@
               	<input type = "hidden" name = name value='<c:out value="${ adminUser.store_name}"></c:out>'>
                 <p class="mb-2">가게주소</p>
                 <input class="form-control-user" type="text" name="location" style="width: 500px"/>
+                
+                <p class="mb-2">가게이미지</p>
+                <input class="form-control-user" name="store_img" type="file" />
+                
                 <p class="mb-2" style="padding-top: 20px">가게소개</p>
                 <textarea class="form-control-user" name="info" style="width: 500px;" rows="8"> </textarea>
+                
                 <p class="mb-2" style="padding-top: 20px">전화번호</p> <input class="form-control-user" name="tel" type="text" min="0" style="width: 500px" />
+                
                 <p class="mb-2" style="padding-top: 20px">배달요금</p> <input class="form-control-user" name="delivery_price" type="number" min="0" style="width: 500px" />
+                
                 <p class="mb-2" style="padding-top: 20px">최소주문금액</p> <input class="form-control-user" name="least_price" type="number" min="0" style="width: 500px" />
               </div>
             </div>
