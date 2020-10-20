@@ -44,6 +44,13 @@ public class AdminController {
 		return "index.jsp";
 	}
 	
+	// 가게 정보수정
+	@RequestMapping("/admin_update.do")
+	public String updateAdmin (AdminVO vo, Model model) {
+		adminService.updateAdmin(vo);
+		return "index.do";
+	}
+	
 	// 메뉴 목록
 	@RequestMapping("/getMenuList.do")
 	public String getMenuList(@ModelAttribute("adminList") AdminVO vo, Model model) {

@@ -338,7 +338,7 @@
               </div>
             </div>
           </div>
-
+			<button id="updateAdmin" name="updateAdmin" onclick="location.href='admin_update.jsp'" class="mb-4 btn btn-primary">정보수정</button>
         </div>
         <!-- /.container-fluid -->
 

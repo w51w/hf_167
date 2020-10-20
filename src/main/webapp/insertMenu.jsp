@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>정보수정</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -301,13 +301,22 @@
               </div>
               <div class="card-body">
               <form action="insertMenu.do">
-                <input type = "text" name = store_name value='<c:out value="${ adminUser.store_name}"></c:out>'>
+                <input type = "hidden" name = store_name value='<c:out value="${ adminUser.store_name}"></c:out>'>
                 <p class="mb-2">메뉴바 설정</p>
                 <input class="form-control-user" name="type" type="number" min="0" max="1" />
                 <input class="form-control-user" name="menubar" type="text" placeholder ="메뉴바 이름을 입력하세요" style="width: 400px"/>
                 <p class="mb-2" style="padding-top: 20px">메뉴명</p>
                 <input class="form-control-user" name="food" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
                 <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food_price" type="number" min="0" style="width: 500px" /><p>
+                
+                <p class="mb-2" style="padding-top: 20px">옵션명 1</p>
+                <input class="form-control-user" name="food1_opt" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
+                <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food1_value" type="number" min="0" style="width: 500px" /><p>
+                
+                <p class="mb-2" style="padding-top: 20px">옵션명 2</p>
+                <input class="form-control-user" name="food2_opt" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>
+                <p class="mb-2" style="padding-top: 20px">금액</p> <input class="form-control-user" name="food2_value" type="number" min="0" style="width: 500px" /><p>
+                
                 <button id="insertMenu" class="mb-4 btn btn-primary">메뉴등록</button>
                 </form>
               </div>

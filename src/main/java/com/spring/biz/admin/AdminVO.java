@@ -13,6 +13,7 @@ public class AdminVO {
 	private String info;
 	private String condition;
 	
+	
 	// MENU VO
 	private int seq;
 	private String store_name;
@@ -21,6 +22,10 @@ public class AdminVO {
 	private String food;
 	private int food_price;
 	private String food_img;
+	private String food1_opt;
+	private String food2_opt;
+	private int food1_value;
+	private int food2_value;
 	
 	// getter and setter
 	public String getName() {
@@ -122,6 +127,30 @@ public class AdminVO {
 	public void setFood_img(String food_img) {
 		this.food_img = food_img;
 	}
+	public String getFood1_opt() {
+		return food1_opt;
+	}
+	public void setFood1_opt(String food1_opt) {
+		this.food1_opt = food1_opt;
+	}
+	public String getFood2_opt() {
+		return food2_opt;
+	}
+	public void setFood2_opt(String food2_opt) {
+		this.food2_opt = food2_opt;
+	}
+	public int getFood1_value() {
+		return food1_value;
+	}
+	public void setFood1_value(int food1_value) {
+		this.food1_value = food1_value;
+	}
+	public int getFood2_value() {
+		return food2_value;
+	}
+	public void setFood2_value(int food2_value) {
+		this.food2_value = food2_value;
+	}
 	
 	
 	
@@ -132,7 +161,8 @@ public class AdminVO {
 				+ ", delivery_price=" + delivery_price + ", least_price=" + least_price + ", rate=" + rate + ", info="
 				+ info + ", condition=" + condition + ", seq=" + seq + ", store_name=" + store_name + ", type=" + type
 				+ ", menubar=" + menubar + ", food=" + food + ", food_price=" + food_price + ", food_img=" + food_img
-				+ "]";
+				+ ", food1_opt=" + food1_opt + ", food2_opt=" + food2_opt + ", food1_value=" + food1_value
+				+ ", food2_value=" + food2_value + "]";
 	}
 	
 	
