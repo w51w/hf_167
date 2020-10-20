@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -299,6 +300,8 @@
                 <h6 class="m-0 font-weight-bold text-primary">매장정보 등록</h6>
               </div>
               <div class="card-body">
+              <form action="admin_update.do">
+              	<input type = "hidden" name = name value='<c:out value="${ adminUser.store_name}"></c:out>'>
                 <p class="mb-2">가게주소</p>
                 <input class="form-control-user" type="text" name="location" style="width: 500px"/>
                 <p class="mb-2" style="padding-top: 20px">가게소개</p>
@@ -309,7 +312,8 @@
               </div>
             </div>
           </div>
-
+			<button id="insertMenu" style="margin-left: 20px" class="mb-4 btn btn-primary">정보수정</button>
+			</form>
         </div>
         <!-- /.container-fluid -->
 
