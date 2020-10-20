@@ -21,7 +21,6 @@ public class StoreDAO {
 	private ResultSet rs = null;
 	
 	private final String GET_STORE = "select * from store where name=?";
-	//
 	private final String GET_STORE_LIST = "select * from store where category_code=?";
 	private final String GET_STORE_MENU_HEAD ="select * from menu where store_name = ? and type = 0";
 	private final String GET_STORE_MENU_CHILD ="select * from menu where store_name = ? and menubar = ? and type = 1";

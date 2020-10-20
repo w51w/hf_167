@@ -166,6 +166,8 @@ public class OrderDAO {
 	private final String LAST_INSERTED = "select max(seq) from hf_167_2차수정.order";
 	private final String ORDER_DETAIL_INSERT = "insert into order_detail (`order_seq`,`food1`,`food2`,`food3`,`food4`,`food5`) values(?,?,?,?,?,?)";
 	private final String GET_ORDER_LIST = "select * from hf_167_2차수정.order where user_e_mail = ? order by seq desc";
+	private final String GET_ORDER_DETAIL = "select * from order_detail where order_seq = ?";
+	
 	public int insert_Order(OrderDTO vo) {
 		try {
 			conn = JDBCUtil.getConnection();
@@ -216,6 +218,7 @@ public class OrderDAO {
 	}
 	
 	public OrderListDTO getOrderList(String e_mail){
+
 		OrderListDTO orderListDTO = new OrderListDTO();
 		ArrayList<OrderDTO> list = new ArrayList<OrderDTO>();
 		try {
@@ -225,6 +228,7 @@ public class OrderDAO {
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
 				OrderDTO orderDTO = new OrderDTO();
+				orderDTO.setSeq(rs.getInt("seq"));
 				orderDTO.setType(rs.getInt("type"));
 				orderDTO.setStore_name(rs.getString("store_name"));
 				orderDTO.setAddress(rs.getString("address"));
@@ -249,6 +253,30 @@ public class OrderDAO {
 			JDBCUtil.close(rs, pstmt, conn);
 		}
 		return orderListDTO;
+	}
+	
+	public OrderDetailDTO getOrderDetail(int order_seq) {
+		OrderDetailDTO orderDetailDTO = new OrderDetailDTO();
+		try {
+			conn = JDBCUtil.getConnection();
+			pstmt = conn.prepareStatement(GET_ORDER_DETAIL);
+			pstmt.setInt(1, order_seq);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				orderDetailDTO.setOrder_seq(rs.getInt("order_seq"));
+				orderDetailDTO.setFood1(rs.getString("food1"));
+				orderDetailDTO.setFood2(rs.getString("food2"));
+				orderDetailDTO.setFood3(rs.getString("food3"));
+				orderDetailDTO.setFood4(rs.getString("food4"));
+				orderDetailDTO.setFood5(rs.getString("food5"));
+			}
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
+		finally {
+			JDBCUtil.close(rs, pstmt, conn);
+		}
+		return orderDetailDTO;
 	}
 	/////		ORDER
 }

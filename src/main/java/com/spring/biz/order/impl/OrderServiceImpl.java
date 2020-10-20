@@ -53,5 +53,9 @@ public class OrderServiceImpl implements OrderService{
 	public OrderListDTO getOrderList(String e_mail) {
 		return orderDAO.getOrderList(e_mail);
 	}
+	@Override
+	public OrderDetailDTO getOrderDetail(int order_seq) {
+		return orderDAO.getOrderDetail(order_seq);
+	}
 	
 }

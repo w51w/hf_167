@@ -17,4 +17,6 @@ public interface OrderService {
 	public void insert_OrderDetail(OrderDetailDTO vo);
 	
 	public OrderListDTO getOrderList(String e_mail);
+	
+	public OrderDetailDTO getOrderDetail(int order_seq);
 }

@@ -67,5 +67,11 @@ public class OrderCartController_client {
 	public OrderListDTO getOrderList(String e_mail) {
 		return orderService.getOrderList(e_mail);
 	}
+	
+	@RequestMapping("/getOrderDetail.do")
+	public OrderDetailDTO getOrderDetail(HttpServletRequest request) {
+		int order_seq = Integer.parseInt(request.getParameter("order_seq"));
+		return orderService.getOrderDetail(order_seq);
+	}
 		
 }
