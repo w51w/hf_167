@@ -22,6 +22,7 @@ public class AdminVO {
 	private String food;
 	private int food_price;
 	private String food_img;
+	private String food_opt;
 	private String food1_opt;
 	private String food2_opt;
 	private int food1_value;
@@ -151,7 +152,12 @@ public class AdminVO {
 	public void setFood2_value(int food2_value) {
 		this.food2_value = food2_value;
 	}
-	
+	public String getFood_opt() {
+		return food_opt;
+	}
+	public void setFood_opt(String food_opt) {
+		this.food_opt = food_opt;
+	}
 	
 	
 	// toString()

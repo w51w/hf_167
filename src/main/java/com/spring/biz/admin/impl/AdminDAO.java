@@ -1,17 +1,25 @@
 package com.spring.biz.admin.impl;
 
+import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.JSONPObject;
 import com.spring.biz.admin.AdminUserVO;
 import com.spring.biz.admin.AdminVO;
@@ -58,7 +66,7 @@ public class AdminDAO {
 	// 메뉴 추가
 	public void insertMenu(AdminVO vo) {
 		System.out.println("MENU insert 기능수행");
-		String opt = '{'+vo.getFood1_opt() +":"+ vo.getFood1_value() + "," + vo.getFood2_opt() + ":" + vo.getFood2_value()+'}';
+		String opt = "{ \"" + vo.getFood1_opt() + "\":" + vo.getFood1_value() + ",\"" + vo.getFood2_opt() + "\":" + vo.getFood2_value() + "}";
 		System.out.println(opt);
 		jdbcTemplate.update(INSERT_MENU, vo.getStore_name(), vo.getType(), vo.getMenubar(), vo.getFood(),vo.getFood_price(),opt);
 	}
