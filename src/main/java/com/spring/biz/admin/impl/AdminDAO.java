@@ -4,12 +4,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import com.spring.biz.admin.AdminUserVO;
 import com.spring.biz.admin.AdminVO;
+import com.spring.biz.admin.impl.AdminUserDAO.AdminUserRowMapper;
 
 @Repository("adminDAO")
 public class AdminDAO {
@@ -18,17 +22,19 @@ public class AdminDAO {
 	private JdbcTemplate jdbcTemplate;
 	
 	// SQL 명령어
-	private final String ADMIN_LIST = "SELECT * FROM STORE";
+	private final String ADMIN_LIST = "SELECT * FROM STORE WHERE name =?";
 	private final String ADMIN_INFO_UPDATE = "UPDATE STORE SET location = ?, info = ?, tel = ?, delivery_price = ?, least_price = ? WHERE NAME = ?";
-	private final String MENU_LIST = "SELECT * FROM MENU";
+	private final String MENU_LIST = "SELECT m.seq, m.store_name, m.food, m.food_price, m.food_img, m.food_opt FROM menu as m JOIN store as s ON m.store_name = s.name";
 	private final String INSERT_MENU = "INSERT INTO MENU(store_name, type, menubar, food, food_price) VALUES (?,?,?,?,?)";
 	private final String DELETE_MENU = "DELETE FROM MENU WHERE SEQ = ?";
 	
 	// 기능 구현
 	
 	// 가게목록 
-	public List<AdminVO> getAdminList(AdminVO vo){
-		return jdbcTemplate.query(ADMIN_LIST, new AdminRowMapper());
+	public AdminVO getAdminList(AdminVO vo){
+		Object[] args = {vo.getName()};
+		System.out.println(vo.toString());
+		return jdbcTemplate.queryForObject(ADMIN_LIST, args, new AdminRowMapper());
 	}
 	
 	// 가게정보 수정
@@ -41,7 +47,9 @@ public class AdminDAO {
 	
 	// 메뉴 목록
 	public List<AdminVO> getMenuList(AdminVO vo) {
-		return jdbcTemplate.query(MENU_LIST, new MenuRowMapper());
+		System.out.println(vo.toString());
+		return jdbcTemplate.query("SELECT * FROM menu WHERE store_name = "+"'"+vo.getName()+"'", new MenuRowMapper());
+		
 	}
 	
 	// 메뉴 추가
@@ -54,7 +62,6 @@ public class AdminDAO {
 	// 메뉴 삭제
 	public void deleteMenu(AdminVO vo) {
 		System.out.println("deleteMenu 기능 수행");
-		System.out.println(vo.toString());
 		jdbcTemplate.update(DELETE_MENU, vo.getSeq());
 	}
 	

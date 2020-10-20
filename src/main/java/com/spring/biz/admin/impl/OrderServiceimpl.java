@@ -19,10 +19,36 @@ public class OrderServiceimpl implements OrderService{
 	public List<OrderVO> getOrder_List(OrderVO vo) {
 		return orderDAO.getOrder_List(vo);
 	}
+	
+	@Override
+	public List<OrderVO> getOrder_Log(OrderVO vo) {
+		return orderDAO.getOrder_Log(vo);
+	}
 
 	@Override
-	public void orderType(OrderVO vo) throws Exception {
-		orderDAO.orderType(vo);
+	public void orderProcess(OrderVO vo) {
+
 	}
+
+	@Override
+	public void orderDelivery(OrderVO vo) {
+		orderDAO.orderDelivery(vo);
+	}
+
+	@Override
+	public void orderEnd(OrderVO vo) {
+		orderDAO.orderEnd(vo);
+		
+	}
+
+	@Override
+	public void orderCancel(OrderVO vo) {
+		// TODO Auto-generated method stub
+		orderDAO.orderCancel(vo);
+	}
+	
+
+	
+	
 	
 }

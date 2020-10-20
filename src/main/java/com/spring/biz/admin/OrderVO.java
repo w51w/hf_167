@@ -1,11 +1,15 @@
 package com.spring.biz.admin;
 
+import java.sql.Date;
+
 public class OrderVO {
 	
 	private int seq;
 	private String address;
 	private String address_detail;
 	private String user_e_mail;
+	private String store_name;
+	private Date date_order;
 	private int type;
 	private String food1;
 	private String food2;
@@ -74,7 +78,18 @@ public class OrderVO {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	
+	public Date getDate_order() {
+		return date_order;
+	}
+	public void setDate_order(Date date_order) {
+		this.date_order = date_order;
+	}
+	public String getStore_name() {
+		return store_name;
+	}
+	public void setStore_name(String store_name) {
+		this.store_name = store_name;
+	}
 	
 	
 	// toString
