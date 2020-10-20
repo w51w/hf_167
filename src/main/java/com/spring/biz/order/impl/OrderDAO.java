@@ -165,7 +165,7 @@ public class OrderDAO {
 	private final String ORDER_INSERT = "insert into hf_167_2차수정.order (`user_e_mail`,`store_name`,`address`,`address_detail`) values(?,?,?,?); ";
 	private final String LAST_INSERTED = "select max(seq) from hf_167_2차수정.order";
 	private final String ORDER_DETAIL_INSERT = "insert into order_detail (`order_seq`,`food1`,`food2`,`food3`,`food4`,`food5`) values(?,?,?,?,?,?)";
-	private final String GET_ORDER_LIST = "select * from hf_167_2차수정.order where user_e_mail = ?";
+	private final String GET_ORDER_LIST = "select * from hf_167_2차수정.order where user_e_mail = ? order by seq desc";
 	public int insert_Order(OrderDTO vo) {
 		try {
 			conn = JDBCUtil.getConnection();
@@ -229,14 +229,14 @@ public class OrderDAO {
 				orderDTO.setStore_name(rs.getString("store_name"));
 				orderDTO.setAddress(rs.getString("address"));
 				orderDTO.setAddress_detail(rs.getString("address_detail"));
-				orderDTO.setDate_order(rs.getDate("date_order"));
+				orderDTO.setDate_order(String.valueOf(rs.getTimestamp("date_order")));
 				orderDTO.setRate(rs.getDouble("rate"));
 				orderDTO.setReview(rs.getString("review"));
 				orderDTO.setReview_img(rs.getString("review_img"));
 				//getDate 는 시분초가 생략 , getTimestamp는 전부 가져오나
 				//date 타입 -> gson으로 들어가지 않음
 				//TODO :====> Date -> String으로 타입 변환한후 gson으로 저장
-				orderDTO.setDate_review(rs.getDate("date_review"));
+				orderDTO.setDate_review(String.valueOf(rs.getTimestamp("date_review")));
 				System.out.println(orderDTO.getDate_order());
 				list.add(orderDTO);
 			}

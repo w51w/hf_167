@@ -1,7 +1,5 @@
 package com.spring.biz.order;
 
-import java.util.Date;
-
 public class OrderDTO {
 	private int seq;
     private int type;
@@ -10,10 +8,10 @@ public class OrderDTO {
     private String address;
     private String address_detail;
     private double rate;
-    private Date date_order;
+    private String date_order;
     private String review;
     private String review_img;
-    private Date date_review;
+    private String date_review;
 	public int getSeq() {
 		return seq;
 	}
@@ -56,10 +54,10 @@ public class OrderDTO {
 	public void setRate(double rate) {
 		this.rate = rate;
 	}
-	public Date getDate_order() {
+	public String getDate_order() {
 		return date_order;
 	}
-	public void setDate_order(Date date_order) {
+	public void setDate_order(String date_order) {
 		this.date_order = date_order;
 	}
 	public String getReview() {
@@ -74,10 +72,10 @@ public class OrderDTO {
 	public void setReview_img(String review_img) {
 		this.review_img = review_img;
 	}
-	public Date getDate_review() {
+	public String getDate_review() {
 		return date_review;
 	}
-	public void setDate_review(Date date_review) {
+	public void setDate_review(String date_review) {
 		this.date_review = date_review;
 	}
 	@Override

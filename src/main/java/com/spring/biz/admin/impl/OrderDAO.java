@@ -21,7 +21,7 @@ public class OrderDAO {
 	
 	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, user.o.type FROM user.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE user.o.type = 1 ORDER BY o.seq;";
 	private String getOrderLog_List = "SELECT * FROM ORDER_DETAIL";
-	private String orderType = "UPDATE hf_167.order SET type = 2 WHERE SEQ =?";
+	private String orderType = "UPDATE hf_167_2Â÷¼öÁ¤.order SET type = 2 WHERE SEQ =?";
 	
 	
 	public List<OrderVO> getOrder_List(OrderVO vo) {
