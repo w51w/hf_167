@@ -11,4 +11,13 @@
 	<!-- 아래 태그를 안쓰고 싶다면 컨트롤러, 클래스 위에@enableWebMvc있어야 됨  
 	SpringMvc를 구성할 때 필요한 Bean 설정들을 자동으로 해주는 어노테이션  , 책에선 예외처리에서 소개된다 p429-->
 	<mvc:annotation-driven></mvc:annotation-driven>
+	
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding" value="utf-8"></property>
+		<property name="maxUploadSize" value="10000000"></property>
+		<property name="uploadTempDir" value="uploadTempDir"></property>
+	</bean>
+	<bean id="uploadTempDir" class="org.springframework.core.io.FileSystemResource">
+		<constructor-arg value="c:/temp/"></constructor-arg>
+	</bean>
 </beans>

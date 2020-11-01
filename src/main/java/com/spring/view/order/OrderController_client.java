@@ -16,7 +16,7 @@ import com.spring.biz.order.impl.OrderDAO;
 
 
 @RestController
-public class OrderCartController_client {
+public class OrderController_client {
 
 	@Autowired
 	private OrderService orderService;
@@ -30,7 +30,7 @@ public class OrderCartController_client {
 	
 	
 	@RequestMapping("/orderCartAdd.do")
-	public String insert_orderCart(OrderCartDTO vo , OrderDAO orderDAO) {	
+	public String insert_orderCart(OrderCartDTO vo) {	
 		return orderService.insert_OrderCart_client(vo);
 	}
 	

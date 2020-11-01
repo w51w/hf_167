@@ -41,7 +41,7 @@ public class AdminController {
 		vo.setName(userVO.getStore_name());
 		AdminVO list = new AdminVO();
 		list = adminService.getAdminList(vo);
-		list.setStore_img("http://192.168.219.101:8080/biz/" + list.getStore_img());
+		list.setStore_img("http://192.168.43.242:8080/biz/" + list.getStore_img());
 		System.out.println(list.getStore_img());
 		model.addAttribute("adminList", list);
 		return "index.jsp";

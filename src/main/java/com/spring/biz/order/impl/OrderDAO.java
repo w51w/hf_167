@@ -230,18 +230,21 @@ public class OrderDAO {
 				OrderDTO orderDTO = new OrderDTO();
 				orderDTO.setSeq(rs.getInt("seq"));
 				orderDTO.setType(rs.getInt("type"));
+				orderDTO.setUser_e_mail(rs.getString("user_e_mail"));
 				orderDTO.setStore_name(rs.getString("store_name"));
 				orderDTO.setAddress(rs.getString("address"));
 				orderDTO.setAddress_detail(rs.getString("address_detail"));
-				orderDTO.setDate_order(String.valueOf(rs.getTimestamp("date_order")));
+				StringBuilder sb = new StringBuilder(rs.getTimestamp("date_order").toString());
+				orderDTO.setDate_order(sb.substring(0, sb.length()-2));
 				orderDTO.setRate(rs.getDouble("rate"));
 				orderDTO.setReview(rs.getString("review"));
 				orderDTO.setReview_img(rs.getString("review_img"));
 				//getDate 는 시분초가 생략 , getTimestamp는 전부 가져오나
 				//date 타입 -> gson으로 들어가지 않음
-				//TODO :====> Date -> String으로 타입 변환한후 gson으로 저장
-				orderDTO.setDate_review(String.valueOf(rs.getTimestamp("date_review")));
-				System.out.println(orderDTO.getDate_order());
+				//:====> Date -> String으로 타입 변환한후 gson으로 저장
+				//StringBuiler로 작업해 주지 않으면  마지막에 '.0'이 붙어서 나온다.
+				StringBuilder sb1 = new StringBuilder(rs.getTimestamp("date_review").toString());
+				orderDTO.setDate_review(sb1.substring(0, sb1.length()-2));
 				list.add(orderDTO);
 			}
 			orderListDTO.setList(list);
