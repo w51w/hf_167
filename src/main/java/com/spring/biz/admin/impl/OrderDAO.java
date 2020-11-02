@@ -19,7 +19,7 @@ public class OrderDAO {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 	
-	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167_2차수정.o.type FROM hf_167_2차수정.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167_2차수정.o.type = 0 AND o.store_name=? ORDER BY o.seq;";
+	private String getOrder_List = "SELECT o.seq ,o.user_e_mail, o.address, o.address_detail, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167_2차수정.o.type FROM hf_167_2차수정.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE hf_167_2차수정.o.type <= 2 AND o.store_name=? ORDER BY o.seq;";
 	private String getOrderLog_List = "SELECT o.seq, o.user_e_mail, o.address, o.address_detail, o.date_order, d.food1, d.food2, d.food3, d.food4, d.food5, hf_167_2차수정.o.type FROM hf_167_2차수정.order as o JOIN order_detail as d ON o.seq = d.order_seq WHERE o.store_name=? ORDER BY o.seq";
 	private String orderDelivery = "UPDATE hf_167_2차수정.order SET type =1 WHERE SEQ =?";
 	private String orderEnd = "UPDATE hf_167_2차수정.order SET type =2 WHERE SEQ =?";

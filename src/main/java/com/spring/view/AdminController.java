@@ -44,7 +44,7 @@ public class AdminController {
 		vo.setName(userVO.getStore_name());
 		AdminVO list = new AdminVO();
 		list = adminService.getAdminList(vo);
-		list.setStore_img("http://172.16.52.54:8080/biz/" + list.getStore_img());
+		list.setStore_img("http://192.168.43.242:8080/biz/" + list.getStore_img());
 		System.out.println(list.getStore_img());
 		model.addAttribute("adminList", list);
 		return "index.jsp";
@@ -76,7 +76,7 @@ public class AdminController {
 		List<AdminVO> list = new ArrayList<AdminVO>();
 		list = adminService.getMenuList(vo);
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFood_img("http://172.16.52.54:8080/biz/" + list.get(i).getFood_img());
+			list.get(i).setFood_img("http://192.168.43.242:8080/biz/" + list.get(i).getFood_img());
 		}
 		System.out.println(list);
 		model.addAttribute("menuList", list);
@@ -105,8 +105,9 @@ public class AdminController {
 		List<OrderVO> list = new ArrayList();
 		ObjectMapper mapper = new ObjectMapper();
 		vo.setStore_name(adminvo.getName());
+		System.out.println(vo.getStore_name());
 		list = orderService.getOrder_List(vo); 
-					
+		model.addAttribute("orderList", list);
 		
 		return "order.jsp";
 	}
@@ -176,7 +177,7 @@ public class AdminController {
 		vo.setType(type);
 		orderService.orderProcess(vo);
 		System.out.println(vo.toString());
-		return "order.do";
+		return "orderList.do";
 	}
 	
 	@RequestMapping("/orderDelivery.do")
@@ -184,21 +185,21 @@ public class AdminController {
 		vo.setSeq(seq);
 		System.out.println(vo.toString());
 		orderService.orderDelivery(vo);
-		return "order.do";
+		return "orderList.do";
 	}
 	
 	@RequestMapping("/orderEnd.do")
 	public String orderEnd(@RequestParam int seq, OrderVO vo) {
 		vo.setSeq(seq);
 		orderService.orderEnd(vo);
-		return "order.do";
+		return "orderList.do";
 	}
 	
 	@RequestMapping("/orderCancel.do")
 	public String orderCancel(@RequestParam int seq, OrderVO vo) {
 		vo.setSeq(seq);
 		orderService.orderCancel(vo);
-		return "order.do";
+		return "orderList.do";
 	}
 	
 	
