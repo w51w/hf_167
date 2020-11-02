@@ -1,5 +1,7 @@
 package com.spring.view;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -41,7 +44,7 @@ public class AdminController {
 		vo.setName(userVO.getStore_name());
 		AdminVO list = new AdminVO();
 		list = adminService.getAdminList(vo);
-		list.setStore_img("http://192.168.43.242:8080/biz/" + list.getStore_img());
+		list.setStore_img("http://172.16.52.54:8080/biz/" + list.getStore_img());
 		System.out.println(list.getStore_img());
 		model.addAttribute("adminList", list);
 		return "index.jsp";
@@ -49,7 +52,19 @@ public class AdminController {
 	
 	// 가게 정보수정
 	@RequestMapping("/admin_update.do")
-	public String updateAdmin (AdminVO vo, Model model) {
+	public String updateAdmin (AdminVO vo, Model model) throws IOException{
+		
+		MultipartFile uploadFile = vo.getStore_uploadFile();
+		String uploadDir = this.getClass().getResource("").getPath(); 
+		uploadDir = uploadDir.substring(1, uploadDir.indexOf(".metadata")) +
+				"hf_167/src/main/webapp/resource/store_img";
+		System.out.println(uploadDir);
+		if (!uploadFile.isEmpty()) {
+			String fileName = uploadFile.getOriginalFilename();
+			System.out.println(fileName);
+			uploadFile.transferTo(new File(uploadDir + "/" + fileName));
+		}
+		
 		adminService.updateAdmin(vo);
 		return "index.do";
 	}
@@ -61,7 +76,7 @@ public class AdminController {
 		List<AdminVO> list = new ArrayList<AdminVO>();
 		list = adminService.getMenuList(vo);
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFood_img("http://192.168.219.101:8080/biz/" + list.get(i).getFood_img());
+			list.get(i).setFood_img("http://172.16.52.54:8080/biz/" + list.get(i).getFood_img());
 		}
 		System.out.println(list);
 		model.addAttribute("menuList", list);
@@ -85,53 +100,14 @@ public class AdminController {
 	
 	
 	// 주문리스트 출력
-	@RequestMapping("/order.do")
+	@RequestMapping("/orderList.do")
 	public String getOrder_List(@ModelAttribute("adminList") AdminVO adminvo, OrderVO vo, Model model) {
 		List<OrderVO> list = new ArrayList();
 		ObjectMapper mapper = new ObjectMapper();
 		vo.setStore_name(adminvo.getName());
 		list = orderService.getOrder_List(vo); 
 					
-		try {
-		// JSON 파싱을 통한 데이터 삽입
-			HashMap<String, String> map = new HashMap<String, String>();
-			for(int i = 0; i < list.size(); i++) {
-							
-				map = mapper.readValue(list.get(i).getFood1(), HashMap.class);
-				vo.setFood1("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
-				list.get(i).setFood1(vo.getFood1());
-				if (list.get(i).getFood2() != null) {
-					map = mapper.readValue(list.get(i).getFood2(), HashMap.class);
-					vo.setFood2("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
-					list.get(i).setFood2(vo.getFood2());
-					System.out.println(list.get(i).getFood1());
-					
-					if(list.get(i).getFood3() != null) {
-						map = mapper.readValue(list.get(i).getFood3(), HashMap.class);
-						vo.setFood3("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
-						list.get(i).setFood3(vo.getFood3());
-									
-						if(list.get(i).getFood4() != null) {
-							map = mapper.readValue(list.get(i).getFood4(), HashMap.class);
-							vo.setFood4("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
-							list.get(i).setFood4(vo.getFood4());
-							
-							if(list.get(i).getFood5() != null) {
-								map = mapper.readValue(list.get(i).getFood5(), HashMap.class);
-								vo.setFood5("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
-								list.get(i).setFood5(vo.getFood5());
-							}
-						}
-					}
-				}
-									
-			}
-						
-			model.addAttribute("orderList", list);
-						
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		
 		return "order.jsp";
 	}
 	

@@ -11,7 +11,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>SB Admin 2 - Blank</title>
+  <title>관리자 업데이트</title>
 
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -71,7 +71,7 @@
 
       <!-- Nav Item - Tables -->
       <li class="nav-item ">
-        <a class="nav-link" href="order.do">
+        <a class="nav-link" href="orderList.do">
           <span>주문처리</span></a>
       </li>
 
@@ -300,13 +300,13 @@
                 <h6 class="m-0 font-weight-bold text-primary">매장정보 등록</h6>
               </div>
               <div class="card-body">
-              <form action="admin_update.do">
+              <form action="admin_update.do" method="post" enctype="multipart/form-data">
               	<input type = "hidden" name = name value='<c:out value="${ adminUser.store_name}"></c:out>'>
                 <p class="mb-2">가게주소</p>
                 <input class="form-control-user" type="text" name="location" style="width: 500px"/>
                 
                 <p class="mb-2">가게이미지</p>
-                <input class="form-control-user" name="store_img" type="file" />
+                <input class="form-control-user" name="store_uploadFile" type="file" />
                 
                 <p class="mb-2" style="padding-top: 20px">가게소개</p>
                 <textarea class="form-control-user" name="info" style="width: 500px;" rows="8"> </textarea>
@@ -319,7 +319,7 @@
               </div>
             </div>
           </div>
-			<button id="insertMenu" style="margin-left: 20px" class="mb-4 btn btn-primary">정보수정</button>
+			<button id="adminUpdate" style="margin-left: 20px" class="mb-4 btn btn-primary">정보수정</button>
 			</form>
         </div>
         <!-- /.container-fluid -->

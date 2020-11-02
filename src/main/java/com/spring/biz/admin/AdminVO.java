@@ -1,5 +1,7 @@
 package com.spring.biz.admin;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class AdminVO {
 	
 	// STORE VO
@@ -13,6 +15,7 @@ public class AdminVO {
 	private String info;
 	private String condition;
 	private String store_img;
+	private MultipartFile store_uploadFile;
 	
 	
 	// MENU VO
@@ -28,6 +31,7 @@ public class AdminVO {
 	private String food2_opt;
 	private int food1_value;
 	private int food2_value;
+	private MultipartFile menu_uploadFile;
 	
 	// getter and setter
 	public String getName() {
@@ -90,6 +94,13 @@ public class AdminVO {
 	public void setStore_img(String store_img) {
 		this.store_img = store_img;
 	}
+	public MultipartFile getStore_uploadFile() {
+		return store_uploadFile;
+	}
+	public void setStore_uploadFile(MultipartFile store_uploadFile) {
+		this.store_uploadFile = store_uploadFile;
+	}
+	
 	
 	
 	// menu
@@ -164,6 +175,12 @@ public class AdminVO {
 	}
 	public void setFood_opt(String food_opt) {
 		this.food_opt = food_opt;
+	}
+	public MultipartFile getMenu_uploadFile() {
+		return menu_uploadFile;
+	}
+	public void setMenu_uploadFile(MultipartFile menu_uploadFile) {
+		this.menu_uploadFile = menu_uploadFile;
 	}
 	
 	
