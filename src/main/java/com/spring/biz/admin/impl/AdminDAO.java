@@ -51,7 +51,7 @@ public class AdminDAO {
 	// 가게정보 수정
 	public void updateAdmin(AdminVO vo) {
 		System.out.println("Update 기능 실행");
-		String img = "resource/store_img/" + vo.getStore_img();
+		String img = "resource/" + vo.getStore_img();
 		jdbcTemplate.update(ADMIN_INFO_UPDATE, img, vo.getLocation(), vo.getInfo(), vo.getTel(), vo.getDelivery_price(), vo.getLeast_price(), vo.getName());
 	}
 	
@@ -73,7 +73,7 @@ public class AdminDAO {
 		}
 		else if(vo.getType() == 1) {
 			String opt = "{ \"" + vo.getFood1_opt() + "\":" + vo.getFood1_value() + ",\"" + vo.getFood2_opt() + "\":" + vo.getFood2_value() + "}";
-			String img = "resource/store_img/" + vo.getFood_img();
+			String img = "resource/" + vo.getFood_img();
 			System.out.println(img);
 			jdbcTemplate.update(INSERT_MENU, img, vo.getStore_name(), vo.getType(), vo.getMenubar(), vo.getFood(),vo.getFood_price(),opt);
 		}

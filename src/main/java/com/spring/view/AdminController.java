@@ -44,7 +44,7 @@ public class AdminController {
 		vo.setName(userVO.getStore_name());
 		AdminVO list = new AdminVO();
 		list = adminService.getAdminList(vo);
-		list.setStore_img("http://192.168.43.242:8080/biz/" + list.getStore_img());
+		list.setStore_img("http://172.16.52.54:8080/biz/" + list.getStore_img());
 		System.out.println(list.getStore_img());
 		model.addAttribute("adminList", list);
 		return "index.jsp";
@@ -52,18 +52,28 @@ public class AdminController {
 	
 	// 가게 정보수정
 	@RequestMapping("/admin_update.do")
-	public String updateAdmin (AdminVO vo, Model model) throws IOException{
+	public String updateAdmin (@ModelAttribute("adminList") AdminVO vo) throws IOException{
 		
+		// 파일 경로
 		MultipartFile uploadFile = vo.getStore_uploadFile();
 		String uploadDir = this.getClass().getResource("").getPath(); 
 		uploadDir = uploadDir.substring(1, uploadDir.indexOf(".metadata")) +
-				"hf_167/src/main/webapp/resource/store_img";
+				"hf_167/src/main/webapp/resource/" + vo.getName();
 		System.out.println(uploadDir);
+		
+		//디렉토리 생성
+		File Folder = new File(uploadDir);
+		if(!Folder.exists()) { Folder.mkdir(); }
+		File subFolder = new File(Folder.getAbsolutePath() + "/store_img" );	
+		if(!subFolder.exists()) { subFolder.mkdir(); }
+		
+		// 파일 입력
+		String fileName = uploadFile.getOriginalFilename();
 		if (!uploadFile.isEmpty()) {
-			String fileName = uploadFile.getOriginalFilename();
-			System.out.println(fileName);
-			uploadFile.transferTo(new File(uploadDir + "/" + fileName));
+			uploadFile.transferTo(new File(uploadDir + "/store_img/" + fileName));
 		}
+		
+		vo.setStore_img(vo.getName() + "/store_img/" + fileName);
 		
 		adminService.updateAdmin(vo);
 		return "index.do";
@@ -76,15 +86,37 @@ public class AdminController {
 		List<AdminVO> list = new ArrayList<AdminVO>();
 		list = adminService.getMenuList(vo);
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFood_img("http://192.168.43.242:8080/biz/" + list.get(i).getFood_img());
+			list.get(i).setFood_img("http://172.16.52.54:8080/biz/" + list.get(i).getFood_img());
 		}
 		System.out.println(list);
 		model.addAttribute("menuList", list);
 		return "getMenuList.jsp";
 	}
+	
 	// 메뉴 등록
 	@RequestMapping("/insertMenu.do")
-	public String insertMenu(AdminVO vo) {
+	public String insertMenu(@ModelAttribute("adminList") AdminVO vo) throws IOException{
+		
+		
+		MultipartFile uploadFile = vo.getMenu_uploadFile();
+		System.out.println(uploadFile.getOriginalFilename());
+		String uploadDir = this.getClass().getResource("").getPath(); 
+		uploadDir = uploadDir.substring(1, uploadDir.indexOf(".metadata")) +
+				"hf_167/src/main/webapp/resource/" + vo.getName();
+		
+		//디렉토리 생성
+		File Folder = new File(uploadDir);
+		if(!Folder.exists()) { Folder.mkdir(); }
+		File subFolder = new File(Folder.getAbsolutePath() + "/order_img" );	
+		if(!subFolder.exists()) { subFolder.mkdir(); }
+		
+		// 파일 입력
+		String fileName = uploadFile.getOriginalFilename();
+		if (!uploadFile.isEmpty()) {
+			uploadFile.transferTo(new File(uploadDir + "/order_img/" + fileName));
+		}
+		vo.setFood_img(vo.getName() + "/order_img/" + fileName);
+		
 		adminService.insertMenu(vo);
 		return "getMenuList.do";
 	}
@@ -105,7 +137,6 @@ public class AdminController {
 		List<OrderVO> list = new ArrayList();
 		ObjectMapper mapper = new ObjectMapper();
 		vo.setStore_name(adminvo.getName());
-		System.out.println(vo.getStore_name());
 		list = orderService.getOrder_List(vo); 
 		model.addAttribute("orderList", list);
 		
@@ -128,7 +159,7 @@ public class AdminController {
 							
 				map = mapper.readValue(list.get(i).getFood1(), HashMap.class);
 				if(list.get(i).getFood1() != null) {
-					vo.setFood1("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+					vo.setFood1("메뉴:" + map.get("food1")+ " 수량:"+ map.get("food1_cnt")+ " 가격:"+map.get("food1_price")+" 옵션:"+ map.get("opt1"));
 					list.get(i).setFood1(vo.getFood1());	
 				}
 				else if(list.get(i).getFood1() == null) {
