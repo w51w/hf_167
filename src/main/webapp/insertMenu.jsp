@@ -291,14 +291,14 @@
                 <h6 class="m-0 font-weight-bold text-primary">매장정보 등록</h6>
               </div>
               <div class="card-body">
-              <form action="insertMenu.do">
+              <form action="insertMenu.do" method="post" enctype="multipart/form-data">
                 <input type = "hidden" name = store_name value='<c:out value="${ adminUser.store_name}"></c:out>'>
                 <p class="mb-2">메뉴바 설정</p>
                 <input class="form-control-user" name="type" type="number" min="0" max="1" />
                 <input class="form-control-user" name="menubar" type="text" placeholder ="메뉴바 이름을 입력하세요" style="width: 400px"/>
                 
                 <p class="mb-2">이미지</p>
-                <input class="form-control-user" name="food_img" type="file" />
+                <input class="form-control-user" name="menu_uploadFile" type="file" />
                 
                 <p class="mb-2" style="padding-top: 20px">메뉴명</p>
                 <input class="form-control-user" name="food" type="text" placeholder ="메뉴를 입력하세요" style="width: 500px"/>

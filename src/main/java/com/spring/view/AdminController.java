@@ -44,7 +44,7 @@ public class AdminController {
 		vo.setName(userVO.getStore_name());
 		AdminVO list = new AdminVO();
 		list = adminService.getAdminList(vo);
-		list.setStore_img("http://172.16.52.54:8080/biz/" + list.getStore_img());
+		list.setStore_img("http://192.168.219.101:8080/biz/" + list.getStore_img());
 		System.out.println(list.getStore_img());
 		model.addAttribute("adminList", list);
 		return "index.jsp";
@@ -86,7 +86,7 @@ public class AdminController {
 		List<AdminVO> list = new ArrayList<AdminVO>();
 		list = adminService.getMenuList(vo);
 		for (int i = 0; i < list.size(); i++) {
-			list.get(i).setFood_img("http://172.16.52.54:8080/biz/" + list.get(i).getFood_img());
+			list.get(i).setFood_img("http://192.168.219.101:8080/biz/" + list.get(i).getFood_img());
 		}
 		System.out.println(list);
 		model.addAttribute("menuList", list);
@@ -138,7 +138,57 @@ public class AdminController {
 		ObjectMapper mapper = new ObjectMapper();
 		vo.setStore_name(adminvo.getName());
 		list = orderService.getOrder_List(vo); 
-		model.addAttribute("orderList", list);
+		
+		try {
+			// JSON 파싱을 통한 데이터 삽입
+				HashMap<String, String> map = new HashMap<String, String>();
+				for(int i = 0; i < list.size(); i++) {
+								
+					map = mapper.readValue(list.get(i).getFood1(), HashMap.class);
+					if(list.get(i).getFood1() != null) {
+						vo.setFood1("메뉴 :" + map.get("food1")+ " 수량 :"+ map.get("food1_cnt")+ " 가격 :"+map.get("food1_price")+" 옵션 :"+ map.get("opt1")
+									+" 옵션1 가격 :"+ map.get("opt1_price") +" 옵션2 :"+ map.get("opt2") +" 옵션2 가격 :"+ map.get("opt2_price"));
+						list.get(i).setFood1(vo.getFood1());	
+					}
+					else if(list.get(i).getFood1() == null) {
+						return "orderLog.jsp";
+					}
+					if (list.get(i).getFood2() != null) {
+						map = mapper.readValue(list.get(i).getFood2(), HashMap.class);
+						vo.setFood2("메뉴:" + map.get("food2")+ ", 수량:"+ map.get("food2_cnt")+ ", 가격:"+map.get("food2_price")+", 옵션:"+ map.get("opt2")
+									+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
+						list.get(i).setFood2(vo.getFood2());
+						System.out.println(list.get(i).getFood1());
+						
+						if(list.get(i).getFood3() != null) {
+							map = mapper.readValue(list.get(i).getFood3(), HashMap.class);
+							vo.setFood3("메뉴:" + map.get("food3")+ ", 수량:"+ map.get("food3_cnt")+ ", 가격:"+map.get("food3_price")+", 옵션:"+ map.get("opt3")
+									+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
+							list.get(i).setFood3(vo.getFood3());
+										
+							if(list.get(i).getFood4() != null) {
+								map = mapper.readValue(list.get(i).getFood4(), HashMap.class);
+								vo.setFood4("메뉴:" + map.get("food4")+ ", 수량:"+ map.get("food4_cnt")+ ", 가격:"+map.get("food4_price")+" 옵션:"+ map.get("opt4")
+										+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
+								list.get(i).setFood4(vo.getFood4());
+								
+								if(list.get(i).getFood5() != null) {
+									map = mapper.readValue(list.get(i).getFood5(), HashMap.class);
+									vo.setFood5("메뉴:" + map.get("food5")+ ", 수량:"+ map.get("food5_cnt")+ ", 가격:"+map.get("food5_price")+", 옵션:"+ map.get("opt5")
+											+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
+									list.get(i).setFood5(vo.getFood5());
+								}
+							}
+						}
+					}
+										
+				}
+							
+				model.addAttribute("orderList", list);
+							
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
 		
 		return "order.jsp";
 	}
@@ -159,7 +209,8 @@ public class AdminController {
 							
 				map = mapper.readValue(list.get(i).getFood1(), HashMap.class);
 				if(list.get(i).getFood1() != null) {
-					vo.setFood1("메뉴:" + map.get("food1")+ " 수량:"+ map.get("food1_cnt")+ " 가격:"+map.get("food1_price")+" 옵션:"+ map.get("opt1"));
+					vo.setFood1("메뉴 :" + map.get("food1")+ " 수량 :"+ map.get("food1_cnt")+ " 가격 :"+map.get("food1_price")+" 옵션 :"+ map.get("opt1")
+								+" 옵션1 가격 :"+ map.get("opt1_price") +" 옵션2 :"+ map.get("opt2") +" 옵션2 가격 :"+ map.get("opt2_price"));
 					list.get(i).setFood1(vo.getFood1());	
 				}
 				else if(list.get(i).getFood1() == null) {
@@ -167,23 +218,27 @@ public class AdminController {
 				}
 				if (list.get(i).getFood2() != null) {
 					map = mapper.readValue(list.get(i).getFood2(), HashMap.class);
-					vo.setFood2("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+					vo.setFood2("메뉴:" + map.get("food2")+ ", 수량:"+ map.get("food2_cnt")+ ", 가격:"+map.get("food2_price")+", 옵션:"+ map.get("opt2")
+								+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
 					list.get(i).setFood2(vo.getFood2());
 					System.out.println(list.get(i).getFood1());
 					
 					if(list.get(i).getFood3() != null) {
 						map = mapper.readValue(list.get(i).getFood3(), HashMap.class);
-						vo.setFood3("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+						vo.setFood3("메뉴:" + map.get("food3")+ ", 수량:"+ map.get("food3_cnt")+ ", 가격:"+map.get("food3_price")+", 옵션:"+ map.get("opt3")
+								+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
 						list.get(i).setFood3(vo.getFood3());
 									
 						if(list.get(i).getFood4() != null) {
 							map = mapper.readValue(list.get(i).getFood4(), HashMap.class);
-							vo.setFood4("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+							vo.setFood4("메뉴:" + map.get("food4")+ ", 수량:"+ map.get("food4_cnt")+ ", 가격:"+map.get("food4_price")+" 옵션:"+ map.get("opt4")
+									+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
 							list.get(i).setFood4(vo.getFood4());
 							
 							if(list.get(i).getFood5() != null) {
 								map = mapper.readValue(list.get(i).getFood5(), HashMap.class);
-								vo.setFood5("메뉴:" + map.get("food")+ " 수량:"+ map.get("food_cnt")+ " 가격:"+map.get("food_price")+" 옵션:"+ map.get("food_opt"));
+								vo.setFood5("메뉴:" + map.get("food5")+ ", 수량:"+ map.get("food5_cnt")+ ", 가격:"+map.get("food5_price")+", 옵션:"+ map.get("opt5")
+										+", 옵션1 가격 :"+ map.get("opt1_price") +", 옵션2 :"+ map.get("opt2") +", 옵션2 가격 :"+ map.get("opt2_price"));
 								list.get(i).setFood5(vo.getFood5());
 							}
 						}
@@ -200,16 +255,9 @@ public class AdminController {
 		return "orderLog.jsp";
 	}
 	
-	// 제일 마지막
-	// 주문상태 처리 - 주문처리, 배달중, 배달완료, 주문취소
-	@RequestMapping("/orderProcess.do")
-	public String orderProcess(@RequestParam int seq, @RequestParam int type , OrderVO vo) throws Exception {
-		vo.setSeq(seq);
-		vo.setType(type);
-		orderService.orderProcess(vo);
-		System.out.println(vo.toString());
-		return "orderList.do";
-	}
+	
+	
+	// 주문상태 처리 - 배달중, 배달완료, 주문취소
 	
 	@RequestMapping("/orderDelivery.do")
 	public String orderDelivery(@RequestParam int seq, OrderVO vo) {
