@@ -5,7 +5,7 @@
 <html>
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
@@ -26,12 +26,12 @@
 
 </head>
 
-<body id="page-top" onload="type2String()">
+<body id="page-top" >
 
   <!-- Page Wrapper -->
   <div id="wrapper">
 
-   <jsp:include page="module/sideBar.jsp"></jsp:include>
+    <jsp:include page="module/sideBar.jsp"></jsp:include>
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -39,7 +39,7 @@
       <!-- Main Content -->
       <div id="content">
 
-       <jsp:include page="module/topBar.jsp"></jsp:include>
+        <jsp:include page="module/topBar.jsp"></jsp:include>
 
         <!-- Begin Page Content -->
         <div class="container-fluid">
@@ -51,42 +51,36 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">주문로그</h6>
+              <h6 class="m-0 font-weight-bold text-primary">매뉴등록</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>주문일시</th>
-                      <th>아이디</th>
-                      <th>연락처</th>
-                      <th>주소</th>
-                      <th>상세주소</th>
-                      <th>주문메뉴 및 수량</th>
-                      <th>주문상태</th>
+                      <th>메뉴바</th>
+                      <th>음식이름</th>
+                      <th>가격</th>
+                      <th>이미지</th>
+                      <th colspan="1">옵션</th>
+                      <th>삭제</th>
                     </tr>
                   </thead>
                   <tfoot>
 
                   </tfoot>
                   <tbody>
-                  <c:forEach  items="${ orderLog}" var="log">
-					  <tr>
-					    <td><c:out value="${log.date_order }"/>
-					    <td><c:out value="${log.user_e_mail }"/></td>
-					    <td><c:out value="${log.phone }"/></td>
-					    <td><c:out value="${log.address }"/></td>
-					    <td><c:out value="${log.address_detail }"/></td>
-					    <td>
-					    	<c:out value="${log.food1 }" escapeXml="false"/>
-					    	<c:out value="${log.food2 }" escapeXml="false"/>
-					    	<c:out value="${log.food3 }" escapeXml="false"/>
-					    	<c:out value="${log.food4 }" escapeXml="false"/>	
-					    	<c:out value="${log.food5 }" escapeXml="false"/>
-					    </td>
-					    <td><c:out value="${log.type }"/></td>
-					</tr>
+					<c:forEach items = "${ menuList}" var = "menu" >
+						<tr>
+							<td><c:out value="${menu.menubar }"/></td>
+							<td><c:out value="${menu.food}"/></td>
+							<td><c:out value="${menu.food_price }"/></td>
+							<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." src="<c:out value="${menu.food_img}"/>" /></td>
+							<td><c:out value="${menu.food_opt }" escapeXml="false"/></td>
+							<td><button id="deleteMenu" name="deleteMenu" 
+									onclick="location.href='deleteMenu.do?seq=${menu.seq}'" 
+									class="mb-4 btn btn-primary">메뉴삭제</button></td>
+						</tr>
 					</c:forEach>
                   </tbody>
                 </table>
@@ -94,8 +88,12 @@
             </div>
           </div>
 
+          <button id="insertPage" onclick="location.href='storeMenuInsert.jsp' " class="mb-4 btn btn-primary">메뉴등록</button>
+
         </div>
         <!-- /.container-fluid -->
+        
+        
 
       </div>
       <!-- End of Main Content -->
@@ -116,34 +114,6 @@
   <!-- Logout Modal-->
   <jsp:include page="module/logoutModal.jsp"></jsp:include>
 
-  <!-- MYSCRIPT -->
-  <script>
-	function type2String(){
-		var element = document.getElementById('dataTable').getElementsByTagName('td');
-		for(var i =6; i<element.length;){
-			var type = element[i].innerText;
-			switch(type){
-				case "4":
-					element[i].innerText = "리뷰작성완료";
-					break;
-				case "3":
-					element[i].innerText = "주문취소";
-					break;
-				case "2":
-					element[i].innerText = "배달완료";
-					break;
-				case "1":
-					element[i].innerText = "배달중";
-					break;
-				default:
-					element[i].innerText = "주문접수대기";	
-					break;
-			}
-			i = i+7;	
-		}
-	}
-
-  </script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -164,3 +134,5 @@
 </body>
 
 </html>
+
+

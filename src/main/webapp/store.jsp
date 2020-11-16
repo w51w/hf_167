@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
 
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
+  <!-- edge mode, IE 버전 중 가장 최신 모드로 표시 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <!-- 실제 액정 크기로 너비 설정, 1배율, safari 11 이전 브라우저에만 영향을 미침  -->
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- 페이지에 대한 설명 -->
   <meta name="description" content="">
+  <!-- 문서의 저자 -->
   <meta name="author" content="">
 
   <title>관리자 페이지</title>
@@ -26,21 +32,21 @@
 
 </head>
 
-<body id="page-top" onload="type2String()">
+<body id="page-top">
 
   <!-- Page Wrapper -->
   <div id="wrapper">
-
-   <jsp:include page="module/sideBar.jsp"></jsp:include>
-
+  
+	<jsp:include page="module/sideBar.jsp"></jsp:include>
+	
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
 
       <!-- Main Content -->
       <div id="content">
-
-       <jsp:include page="module/topBar.jsp"></jsp:include>
-
+      
+        <jsp:include page="module/topBar.jsp"></jsp:include>
+		
         <!-- Begin Page Content -->
         <div class="container-fluid">
 
@@ -51,49 +57,42 @@
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">주문로그</h6>
+              <h6 class="m-0 font-weight-bold text-primary">점포관리</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered table-striped table-hover" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>주문일시</th>
-                      <th>아이디</th>
-                      <th>연락처</th>
-                      <th>주소</th>
-                      <th>상세주소</th>
-                      <th>주문메뉴 및 수량</th>
-                      <th>주문상태</th>
+                      <th>가게이미지</th>
+                      <th>가게이름</th>
+                      <th>가게 소개</th>
+                      <th>가게 위치</th>
+                      <th>전화번호</th>
+                      <th>배달요금</th>
+                      <th>최소주문금액</th>
                     </tr>
                   </thead>
                   <tfoot>
 
                   </tfoot>
                   <tbody>
-                  <c:forEach  items="${ orderLog}" var="log">
-					  <tr>
-					    <td><c:out value="${log.date_order }"/>
-					    <td><c:out value="${log.user_e_mail }"/></td>
-					    <td><c:out value="${log.phone }"/></td>
-					    <td><c:out value="${log.address }"/></td>
-					    <td><c:out value="${log.address_detail }"/></td>
-					    <td>
-					    	<c:out value="${log.food1 }" escapeXml="false"/>
-					    	<c:out value="${log.food2 }" escapeXml="false"/>
-					    	<c:out value="${log.food3 }" escapeXml="false"/>
-					    	<c:out value="${log.food4 }" escapeXml="false"/>	
-					    	<c:out value="${log.food5 }" escapeXml="false"/>
-					    </td>
-					    <td><c:out value="${log.type }"/></td>
-					</tr>
-					</c:forEach>
+					  <tr>				  
+					  	<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." 
+					  	src="${store.store_img} " /></td>
+					  	<td>${store.name }</td>
+					    <td>${store.info }</td>
+					    <td>${store.location }</td>
+					    <td>${store.tel }</td>
+					    <td>${store.delivery_price }</td>
+					    <td>${store.least_price }</td>
+					  </tr>
                   </tbody>
                 </table>
               </div>
             </div>
           </div>
-
+			<button id="updateAdmin" name="updateAdmin" onclick="location.href='storeUpdate.jsp'" class="mb-4 btn btn-primary">정보수정</button>
         </div>
         <!-- /.container-fluid -->
 
@@ -104,7 +103,7 @@
 
     </div>
     <!-- End of Content Wrapper -->
-
+   
   </div>
   <!-- End of Page Wrapper -->
 
@@ -115,35 +114,7 @@
 
   <!-- Logout Modal-->
   <jsp:include page="module/logoutModal.jsp"></jsp:include>
-
-  <!-- MYSCRIPT -->
-  <script>
-	function type2String(){
-		var element = document.getElementById('dataTable').getElementsByTagName('td');
-		for(var i =6; i<element.length;){
-			var type = element[i].innerText;
-			switch(type){
-				case "4":
-					element[i].innerText = "리뷰작성완료";
-					break;
-				case "3":
-					element[i].innerText = "주문취소";
-					break;
-				case "2":
-					element[i].innerText = "배달완료";
-					break;
-				case "1":
-					element[i].innerText = "배달중";
-					break;
-				default:
-					element[i].innerText = "주문접수대기";	
-					break;
-			}
-			i = i+7;	
-		}
-	}
-
-  </script>
+  
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
