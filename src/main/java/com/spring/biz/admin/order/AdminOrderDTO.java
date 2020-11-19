@@ -129,7 +129,7 @@ public class AdminOrderDTO {
 	}
 	@Override
 	public String toString() {
-		return "AdminOrderDTO [phone=" + phone + ", seq=" + seq + ", type=" + type + ", user_e_mail=" + user_e_mail
+		return "\nAdminOrderDTO [phone=" + phone + ", seq=" + seq + ", type=" + type + ", user_e_mail=" + user_e_mail
 				+ ", store_name=" + store_name + ", address=" + address + ", address_detail=" + address_detail
 				+ ", rate=" + rate + ", date_order=" + date_order + ", review=" + review + ", review_img=" + review_img
 				+ ", date_review=" + date_review + ", food1=" + food1 + ", food2=" + food2 + ", food3=" + food3

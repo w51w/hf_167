@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
   pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -107,12 +107,15 @@
             <div class="col-xl-5 card shadow">
               <form id="updateForm" method="post">
                 <div class="card-header py-3 bg-white row justify-content-between">
-          <!-- 분기 처리 -->
-                  <button type="submit" onclick="javascript: updateForm.action='regularList.do'"
-                       class="btn btn-warning mt-1 col-2 ml-2">적용</button>
-                  
-                  <button type="submit" onclick="javascript: updateForm.action='updateCondition.do'" 
-                       class="btn btn-danger mt-1 col-2 mr-2">변경</button>
+          <!-- 분기 처리 --> 
+                  <input type="submit" class="btn btn-warning mt-1 col-2 ml-2" 
+                         onclick="javascript: updateForm.action='regularList.do'" 
+                         value="적용"
+                         id="apply"/>   
+                  <input type="submit" class="btn btn-danger mt-1 col-2 mr-2" 
+                         onclick="javascript: updateForm.action='updateCondition.do'" 
+                         value="변경"
+                         id="update"/>
                 </div>
                 
                 <div class="card-body">
@@ -120,9 +123,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">날짜범위</span>
                     </div>
-                    <input type="number" id="updateConDay"
+                    <input type="number" 
+                      id="updateConDay"
                       name="condition_day"
-                      class="form-control text-right">
+                      class="form-control text-right"
+                      placeholder="몇 일 이내인지 숫자 입력"
+                      required="required">
                   </div>
 
                   <div class="input-group mb-3">
@@ -130,10 +136,15 @@
                       <label class="input-group-text"
                         for="inputGroupSelect01">조건</label>
                     </div>
-                    <select class="custom-select" id="updateCon" name="condition">
-                      <option selected >Choose...</option>
-                      <option value="합산금액">합산금액</option>
-                      <option value="주문횟수">주문횟수</option>
+                    <select class="custom-select" 
+                      id="updateCon" 
+                      name="condition"
+                      required="required"
+                      onchange="setNull()">
+                      <option selected value ="">Choose ...</option>
+                      <option value ="합산금액">합산금액</option>
+                      <option value ="주문횟수">주문횟수</option>
+                      <option value ="미설정">미설정</option>
                     </select>
                   </div>
 
@@ -141,7 +152,12 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">값</span>
                     </div>
-                    <input type="number" id="updateConVal" name="condition_value" class="form-control text-right" placeholder="할인액 , 분기 추가 가능 , 많아지면 json으로 처리">
+                    <input type="number"
+                      id="updateConVal" 
+                      name="condition_value"
+                      class="form-control text-right" 
+                      placeholder="조건에 대한 값 "
+                      required="required">
                   </div>
 
                   <input type="hidden" name="name" value="${ store.name}">
@@ -152,7 +168,7 @@
 <!-- second Row -->
           <div class="row ml-0 mt-5">
     <!-- DataTales Example -->
-              <div class="card shadow mb-4 col-xl-11">
+            <div class="card shadow mb-4 col-xl-11">
                 <div class="card-header bg-white py-3">
                   <h6 class="m-0 font-weight-bold text-primary">단골 고객 목록</h6>
                 </div>
@@ -161,37 +177,33 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                       <thead>
                         <tr>
-                          <th>가게이미지</th>
-                          <th>가게이름</th>
-                          <th>가게 소개</th>
-                          <th>가게 위치</th>
-                          <th>전화번호</th>
-                          <th>배달요금</th>
-                          <th>최소주문금액</th>
+                          <th>아이디</th>
+                          <th>횟수/금액</th>
                         </tr>
                       </thead>
                       <tfoot>
     
                       </tfoot>
                       <tbody>
+                        <c:forEach items="${ cntList}" var="list">                        
     					  <tr>				  
-    					  	<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." 
-    					  	src="${store.store_img} " /></td>
-    					  	<td>${store.name }</td>
-    					    <td>${store.info }</td>
-    					    <td>${store.location }</td>
-    					    <td>${store.tel }</td>
-    					    <td>${store.delivery_price }</td>
-    					    <td>${store.least_price }</td>
+    					  	<td><c:out value="${list.user_e_mail }"/></td>
+    					  	<td><c:out value="${list.cnt }"/></td>
     					  </tr>
+                        </c:forEach>
+                        <c:forEach items="${ sumList}" var="list">                        
+                          <tr>          
+                            <td><c:out value="${list.user_e_mail }"/></td>
+                            <td><c:out value="${list.sum }"/></td>
+                          </tr>
+                        </c:forEach>
                       </tbody>
                     </table>
                   </div>
                 </div>
               </div>
-              </div>
-            </div>
-
+          </div>
+        </div>
       </div>
       <!-- End of Main Content -->
 
@@ -222,15 +234,28 @@
 					Button.innerHTML = "▶";
 				}
 			}
-			function copyCondition() {
+			function copyCondition() {               
 				var current = document.getElementById("currentForm");
 				var update = document.getElementById("updateForm");
 
 				for (var i = 0; i < current.length; i++) {
-
                     update[i+2].value = current[i].value
 				}
 			}
+            function setNull(){
+                if(document.getElementById("updateCon").value == "미설정"){
+                	document.getElementById("updateConDay").value = 0;
+                	document.getElementById("updateConDay").disabled = true;
+                	document.getElementById("updateConVal").value = 0;
+                	document.getElementById("updateConVal").disabled = true;              	
+                    }
+                else{
+                	document.getElementById("updateConDay").disabled = false;
+                	document.getElementById("updateConVal").disabled = false;
+                    }
+                
+                }
+
 		</script>
   <!-- Bootstrap core JavaScript-->
   <script src="vendor/jquery/jquery.min.js"></script>

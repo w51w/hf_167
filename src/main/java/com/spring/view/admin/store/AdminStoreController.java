@@ -71,12 +71,6 @@ public class AdminStoreController {
 		return "getAdminStore.do";
 	}
 	
-	@RequestMapping("/regularList.do") 
-	public String regularList(AdminStoreDTO vo) {
-		//Á¶°Ç 
-		//
-		return "regular.jsp";
-	}
 	
 	@RequestMapping("/updateCondition.do")
 	public String updateCondition(AdminStoreDTO vo) {

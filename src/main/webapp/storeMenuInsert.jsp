@@ -163,7 +163,7 @@
 				children[1].setAttribute("name", "food" + i + "_opt");
 				children[2].setAttribute("onclick", "remove(" + i + ")");
 				children[4].setAttribute("id", "food" + i + "_value");
-				children[4].setAttribute("name", "food" + i + "__value");
+				children[4].setAttribute("name", "food" + i + "_value");
 				foodDiv.setAttribute("id", "food" + i);
 				console.log("회전:" + i);
 			}

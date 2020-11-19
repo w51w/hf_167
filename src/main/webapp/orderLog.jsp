@@ -73,7 +73,7 @@
                   <tbody>
                   <c:forEach  items="${ orderLog}" var="log">
 					  <tr>
-					    <td><c:out value="${log.date_order }"/>
+					    <td><c:out value="${log.date_order }"/></td>
 					    <td><c:out value="${log.user_e_mail }"/></td>
 					    <td><c:out value="${log.phone }"/></td>
 					    <td><c:out value="${log.address }"/></td>
