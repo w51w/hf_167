@@ -152,7 +152,7 @@
 					element[i].innerText = "주문접수대기";	
 					break;
 			}
-			i = i+7;	
+			i = i+8;	
 		}
 	}
 

@@ -1,6 +1,6 @@
 package com.spring.biz.admin.order;
 
-public class SumVO {
+public class SumVO implements Comparable<SumVO>{
 	private String user_e_mail;
 	private int sum;
 	
@@ -16,5 +16,9 @@ public class SumVO {
 	public void setSum(int sum) {
 		this.sum = sum;
 	}
-	
+	@Override
+	public int compareTo(SumVO o) {
+		return user_e_mail.compareTo(o.user_e_mail);
+	}
+
 }

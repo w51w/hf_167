@@ -68,12 +68,15 @@
                 
                   <p class="mb-2" style="padding-top: 20px">최소주문금액</p> 
                   <input class="form-control-user" name="least_price" type="number" min="0" style="width: 500px" value="${store.least_price }" />
+                  
+                  <p class="mb-2" style="padding-top: 20px"></p> 
+                  <button type="submit" id="adminUpdate" class="mb-4 btn btn-primary">정보수정</button>
                 </form>
               </div>
             </div>
           </div>
           <!-- /.container-fluid -->
-			<button id="adminUpdate" style="margin-left: 20px" class="mb-4 btn btn-primary">정보수정</button>
+			
 			
         </div>
         <!-- End of Content-->

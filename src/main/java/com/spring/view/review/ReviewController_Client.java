@@ -8,13 +8,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.biz.order.OrderDTO;
 import com.spring.biz.order.OrderListDTO;
+import com.spring.biz.review.ReviewService;
 import com.spring.biz.review.impl.ReviewDAO;
 
 @RestController
-public class ReviewController_client {
+public class ReviewController_Client {
 	
 	@Autowired
-	private ReviewDAO reviewDAO;
+	private ReviewService reviewService;
 	
 	@RequestMapping("/insert_review.do")
 	public String review_insert(HttpServletRequest request , OrderDTO orderDTO) {
@@ -28,19 +29,19 @@ public class ReviewController_client {
 		
 		System.out.println(img_path);
 	
-		return reviewDAO.review_insert(orderDTO, img_path);
+		return reviewService.review_insert(orderDTO, img_path);
 	}
 	
 	@RequestMapping("/getRate.do")
 	public String getRate(HttpServletRequest request) {
 		String store_name = request.getParameter("store_name");
-		return reviewDAO.getRate(store_name);
+		return reviewService.getRate(store_name);
 	}
 	
 	@RequestMapping("getReview.do")
 	public OrderListDTO getReviewList(HttpServletRequest request) {
 		String store_name = request.getParameter("store_name");
-		return reviewDAO.getReviewList(store_name);
+		return reviewService.getReviewList(store_name);
 		
 	}
 

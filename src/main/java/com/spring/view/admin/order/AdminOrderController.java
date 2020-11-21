@@ -2,6 +2,8 @@ package com.spring.view.admin.order;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -163,19 +165,25 @@ public class AdminOrderController {
 						}
 						// 1회전 끝남 ... 
 					}
-					// End of Food1 ~ Food5(MAX)				
+					// End of Food1 ~ Food5(MAX)			
 					sumList.add(sumVO);
 				}
 				//테스트
 				for(int i =0; i<sumList.size(); i++) {
 					System.out.println(sumList.get(i).getUser_e_mail() +" : " +sumList.get(i).getSum());
 				}
+				Collections.sort(sumList);
+				System.out.println("정렬");
+				for(int i =0; i<sumList.size(); i++) {
+					System.out.println(sumList.get(i).getUser_e_mail() +" : " +sumList.get(i).getSum());
+				}
 				
-				//grouping 작업
+				//grouping 작업 
 				List<SumVO> groupBySumList = new ArrayList<SumVO>();
 				String e_mail = null;
 				int sum = 0;
 				for(int i =0; i<sumList.size(); i++) {
+					
 					e_mail = sumList.get(i).getUser_e_mail();
 					sum += sumList.get(i).getSum();
 					if(i != sumList.size()-1) { //마지막 인덱스가 아니고

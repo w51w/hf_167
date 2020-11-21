@@ -78,6 +78,7 @@
                   </tfoot>
                   <tbody>
 					  <tr>				  
+           
 					  	<td><img style="max-width: 100px; height: auto; alt="이미지가 없습니다." 
 					  	src="${store.store_img} " /></td>
 					  	<td>${store.name }</td>

@@ -1,6 +1,7 @@
 package com.spring.biz.order;
 
 public interface OrderService {
+	//orderCart
 	public OrderCartListDTO getOrderCartList_client(String e_mail);
 	
 	public String insert_OrderCart_client(OrderCartDTO vo);

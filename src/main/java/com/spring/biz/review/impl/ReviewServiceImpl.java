@@ -14,7 +14,7 @@ public class ReviewServiceImpl implements ReviewService{
 	private ReviewDAO reviewDAO;
 
 	@Override
-	public String delete_cart(OrderDTO vo, String img_path) {
+	public String review_insert(OrderDTO vo, String img_path) {
 		return reviewDAO.review_insert(vo, img_path);
 	}
 
@@ -27,5 +27,7 @@ public class ReviewServiceImpl implements ReviewService{
 	public OrderListDTO getReviewList(String store_name) {
 		return reviewDAO.getReviewList(store_name);
 	}
+
+
 
 }

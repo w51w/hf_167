@@ -16,12 +16,13 @@ import com.spring.biz.order.impl.OrderDAO;
 
 
 @RestController
-public class OrderController_client {
+public class OrderController_Client {
 
 	@Autowired
 	private OrderService orderService;
 	
-	//orderCart
+//orderCart
+	
 	@RequestMapping("/getOrderCart.do")
 	public OrderCartListDTO getOrderCart(HttpServletRequest request) {
 		String e_mail = request.getParameter("e_mail");
@@ -52,7 +53,8 @@ public class OrderController_client {
 		return orderService.maxCheck(e_mail, store_name);
 	}
 	
-	// order
+// order
+	
 	@RequestMapping("/order_insert.do")
 	public int order_insert(OrderDTO vo) {
 		return orderService.insert_order(vo);
@@ -72,6 +74,5 @@ public class OrderController_client {
 	public OrderDetailDTO getOrderDetail(HttpServletRequest request) {
 		int order_seq = Integer.parseInt(request.getParameter("order_seq"));
 		return orderService.getOrderDetail(order_seq);
-	}
-		
+	}		
 }
