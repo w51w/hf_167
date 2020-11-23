@@ -1,7 +1,13 @@
 package com.spring.view.review;
 
+import java.awt.Graphics2D;
+import java.awt.Image;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+
+import javax.imageio.ImageIO;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -37,7 +43,15 @@ public class FileUpLoadController {
 		String name = files.getOriginalFilename().substring(files.getOriginalFilename().indexOf("20")); // 20~~
 		name = name.substring(0, name.indexOf(".jpg")+4); //20~~.jpg
 		
-		//업로드
-		files.transferTo(new File(subFolder.getAbsolutePath() + "/" + name));
+		//리사이즈
+		BufferedImage inputImage = ImageIO.read(files.getInputStream());
+		BufferedImage outputImage =
+                new BufferedImage(800, 800, inputImage.getType());
+		
+		Graphics2D graphics2D = outputImage.createGraphics();
+        graphics2D.drawImage(inputImage, 0, 0, 800, 800, null);
+        graphics2D.dispose();
+
+        ImageIO.write(outputImage, "jpg", new File(subFolder.getAbsolutePath() + "/" + name));
 	}
 }
